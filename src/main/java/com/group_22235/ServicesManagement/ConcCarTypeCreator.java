@@ -1,4 +1,4 @@
-package ServicesManagement;
+package com.group_22235.ServicesManagement;
 
 public class ConcCarTypeCreator {
     public CarriageType createCarriage(String carType) {

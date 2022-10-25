@@ -1,4 +1,4 @@
-package ServicesManagement;
+package com.group_22235.ServicesManagement;
 
 public class StorageCar implements CarriageType{
     String freq = "Every 3 days";
