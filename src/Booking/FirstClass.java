@@ -1,12 +1,11 @@
 package Booking;
 
 public class FirstClass extends TicketDecorator {
-    
+    private boolean firstClass = true;
+
     public FirstClass(Ticket ticket) {
         super(ticket);
     }
-
-    private boolean firstClass = true;
 
     @Override
 	public void decorate(){
@@ -14,4 +13,11 @@ public class FirstClass extends TicketDecorator {
 		System.out.print(" Firstclass Ticket");
 	}
 
+    public void setFirstClass(Boolean firstClass) {
+        this.firstClass = firstClass;
+    }
+
+    public Boolean getFirstClass() {
+        return firstClass;
+    }
 }
