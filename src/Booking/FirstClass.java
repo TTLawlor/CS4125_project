@@ -10,7 +10,7 @@ public class FirstClass extends TicketDecorator {
     @Override
 	public void decorate(){
 		super.decorate();
-		System.out.print(" Firstclass Ticket");
+		System.out.print("First Class = " + getFirstClass());
 	}
 
     public void setFirstClass(Boolean firstClass) {
