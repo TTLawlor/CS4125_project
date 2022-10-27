@@ -4,6 +4,7 @@ public class ticketTest {
 
 	public static void main(String[] args) {
 		Ticket t1 = new Flexible(new BasicTicket());
+		//t1.setArrStation("Derry");
 		t1.decorate();
 		System.out.println("\n*****");
 		
