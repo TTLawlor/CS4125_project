@@ -1,5 +1,6 @@
-import ServicesManagement.CarriageType;
-import ServicesManagement.ConcCarTypeCreator;
+package com.group_22235;
+import com.group_22235.ServicesManagement.CarriageType;
+import com.group_22235.ServicesManagement.ConcCarTypeCreator;
 
 public class MainFile {
     public static void main(String[] args) {

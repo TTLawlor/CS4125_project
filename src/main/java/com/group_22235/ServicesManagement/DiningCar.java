@@ -1,4 +1,4 @@
-package ServicesManagement;
+package com.group_22235.ServicesManagement;
 
 public class DiningCar implements CarriageType {
     // Could have menu?

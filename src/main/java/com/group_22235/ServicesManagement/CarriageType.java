@@ -1,4 +1,4 @@
-package ServicesManagement;
+package com.group_22235.ServicesManagement;
 
 public interface CarriageType {
     enum WorkLevel {
