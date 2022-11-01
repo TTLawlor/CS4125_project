@@ -23,7 +23,7 @@ public class CarriageFactory {
         return carriageList;
     }
        
-    public static CarriageType createCarriage(CarriageType.Type carType) {
+    public CarriageType createCarriage(CarriageType.Type carType) {
         return carriagesMap.get(carType);
     }
 }

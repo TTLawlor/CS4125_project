@@ -9,7 +9,8 @@ public class CarriageController {
     
     @GetMapping("/carriage/{carriage-type}")
     public String getCarriageType(@PathVariable("carriage-type") CarriageType.Type carriage) throws Exception {
-        CarriageType carriageFactory = CarriageFactory.createCarriage(carriage);
+        CarriageFactory cFactory = new CarriageFactory();
+        CarriageType carriageFactory = cFactory.createCarriage(carriage);
         return carriageFactory.cleaningRoutine();
     }
 

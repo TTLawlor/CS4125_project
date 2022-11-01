@@ -7,7 +7,8 @@ public class MainFile {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
 
-        CarriageType car1 = CarriageFactory.createCarriage(Type.PASSENGER);
+        CarriageFactory cFactory = new CarriageFactory();
+        CarriageType car1 = cFactory.createCarriage(Type.PASSENGER);
 
         System.out.println(car1.cleaningRoutine());
     }
