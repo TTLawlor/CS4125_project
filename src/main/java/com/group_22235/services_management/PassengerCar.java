@@ -1,7 +1,10 @@
-package com.group_22235.ServicesManagement;
+package com.group_22235.services_management;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PassengerCar implements CarriageType{
     private ArrayList<Boolean> seats = new ArrayList<Boolean>();
     private Boolean firstClass = false;
@@ -32,4 +35,10 @@ public class PassengerCar implements CarriageType{
     public String cleaningRoutine() {
         return "Work Level:" + CarriageType.WorkLevel.HIGH + "\nFrequency: " + freq;
     }
+
+    @Override
+    public Type getCarriageType() {
+        return Type.PASSENGER;
+    }
+
 }
