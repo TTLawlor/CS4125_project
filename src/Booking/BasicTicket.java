@@ -1,6 +1,6 @@
 package Booking;
 
-public class BasicTicket implements Ticket {
+public class BasicTicket implements TicketType {
 
     private String depStation, arrStation; // Will need changing to Station obj
     private String passType, time, date, qrCode;
@@ -9,7 +9,7 @@ public class BasicTicket implements Ticket {
     //private TicketType tickType;
 
     @Override
-    public void decorate() {
+    public void assign() {
         System.out.println(getDepStation() + "\n" + getArrStation());
         System.out.println("This is a Ticket");
     }

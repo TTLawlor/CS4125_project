@@ -1,14 +1,24 @@
 package Booking;
 
-public class Flexible extends TicketDecorator {
+public class Flexible extends AssignTicketType {
     
-    public Flexible(Ticket ticket) {
+private int timeLimit;
+
+    public Flexible(TicketType ticket) {
         super(ticket);
     }
     
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public int getTimeLimit(){
+        return timeLimit;
+    }
+    
     @Override
-	public void decorate(){
-		super.decorate();
+	public void assign(){
+		super.assign();
 		System.out.print(" Flexiticket");
 	}
 }

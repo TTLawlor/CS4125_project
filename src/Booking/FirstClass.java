@@ -1,15 +1,16 @@
 package Booking;
 
-public class FirstClass extends TicketDecorator {
+public class FirstClass extends AssignTicketType {
     private boolean firstClass = true;
-
-    public FirstClass(Ticket ticket) {
+    private int timeLimit;
+    
+    public FirstClass(TicketType ticket) {
         super(ticket);
     }
 
     @Override
-	public void decorate(){
-		super.decorate();
+	public void assign(){
+		super.assign();
 		System.out.print("First Class = " + getFirstClass());
 	}
 
@@ -19,5 +20,13 @@ public class FirstClass extends TicketDecorator {
 
     public Boolean getFirstClass() {
         return firstClass;
+    }
+
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public int getTimeLimit(){
+        return timeLimit;
     }
 }
