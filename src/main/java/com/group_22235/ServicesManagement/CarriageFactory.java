@@ -1,6 +1,6 @@
 package com.group_22235.ServicesManagement;
 
-public class ConcCarTypeCreator {
+public class CarriageFactory {
     public CarriageType createCarriage(String carType) {
         if(carType == null){
             return null;
