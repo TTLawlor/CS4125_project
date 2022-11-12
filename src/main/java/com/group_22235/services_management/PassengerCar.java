@@ -1,13 +1,26 @@
 package com.group_22235.services_management;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+@Entity
 @Component
-public class PassengerCar implements CarriageType{
-    private ArrayList<Boolean> seats = new ArrayList<Boolean>();
+@DiscriminatorValue(value = "PASSENGER")
+public class PassengerCar extends Carriage{
+
+    @Transient
+    private List<Boolean> seats = new ArrayList<Boolean>();
+
+    @Column(name = "first_class")
     private Boolean firstClass = false;
+
     String freq = "Multiple times a day";
 
     public void setSeatStatus(int seatNum, Boolean occupied) {
@@ -19,7 +32,7 @@ public class PassengerCar implements CarriageType{
         return seats.get(seatNum);
     }
 
-    public ArrayList<Boolean> getSeats() {
+    public List<Boolean> getSeats() {
         return seats;
     }
 
@@ -33,12 +46,16 @@ public class PassengerCar implements CarriageType{
 
     @Override
     public String cleaningRoutine() {
-        return "Work Level:" + CarriageType.WorkLevel.HIGH + "\nFrequency: " + freq;
+        return "Work Level:" + Carriage.WorkLevel.HIGH + "\nFrequency: " + freq;
     }
 
     @Override
-    public Type getCarriageType() {
-        return Type.PASSENGER;
+    public String getCarriageType() {
+        return "Passenger carriage";
     }
 
+    @Override
+    public boolean checkStatus() {
+        return true;
+    }
 }

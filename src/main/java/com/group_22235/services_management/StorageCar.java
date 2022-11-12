@@ -1,19 +1,34 @@
 package com.group_22235.services_management;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
+@Entity
 @Component
-public class StorageCar implements CarriageType{
+@DiscriminatorValue(value = "STORAGE")
+public class StorageCar extends Carriage{
+    @Id
+    @Column(name = "id")
+    long carriageID;
+    
     String freq = "Every 3 days";
 
     @Override
     public String cleaningRoutine() {
-        return "Work Level:" + CarriageType.WorkLevel.LOW + "\nFrequency: " + freq;
+        return "Work Level:" + Carriage.WorkLevel.LOW + "\nFrequency: " + freq;
     }
 
     @Override
-    public Type getCarriageType() {
-        return Type.STORAGE;
+    public String getCarriageType() {
+        return "Storage carriage";
     }
 
+    @Override
+    public boolean checkStatus() {
+        return true;
+    }
 }

@@ -1,17 +1,28 @@
 package com.group_22235.services_management;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CarriageController {
-    
-    @GetMapping("/carriage/{carriage-type}")
-    public String getCarriageType(@PathVariable("carriage-type") CarriageType.Type carriage) throws Exception {
-        CarriageFactory cFactory = new CarriageFactory();
-        CarriageType carriageFactory = cFactory.createCarriage(carriage);
-        return carriageFactory.cleaningRoutine();
+
+    private final ICarriageService carriageService;
+
+    public CarriageController(ICarriageService carriageService) {
+        this.carriageService = carriageService;
+    }
+
+    @GetMapping("/carriages")
+    public List<Carriage> getCarriages() throws Exception {
+        return carriageService.findAll();
+    }
+
+    @GetMapping("/carriages/{id}")
+    public Carriage getCarriagesById(@PathVariable("id") Long id) throws Exception {
+        return carriageService.findById(id);
     }
 
 }

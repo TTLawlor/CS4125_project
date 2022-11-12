@@ -1,21 +1,31 @@
 package com.group_22235.services_management;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.springframework.stereotype.Component;
 
+@Entity
 @Component
-public class DiningCar implements CarriageType {
+@DiscriminatorValue(value = "DINING")
+public class DiningCar extends Carriage {
     // Could have menu?
 
     String freq = "Once a day";
 
     @Override
     public String cleaningRoutine() {
-        return "Work Level:" + CarriageType.WorkLevel.MODERATE + "\nFrequency: " + freq;
+        return "Work Level:" + Carriage.WorkLevel.MODERATE + "\nFrequency: " + freq;
     }
 
     @Override
-    public Type getCarriageType() {
-        return Type.DINING;
+    public String getCarriageType() {
+        return "Dining carriage";
+    }
+
+    @Override
+    public boolean checkStatus() {
+        return true;
     }
 
 }

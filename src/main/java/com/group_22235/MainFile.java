@@ -1,14 +1,13 @@
 package com.group_22235;
-import com.group_22235.services_management.CarriageType;
+import com.group_22235.services_management.Carriage;
 import com.group_22235.services_management.CarriageFactory;
-import com.group_22235.services_management.CarriageType.Type;
 
 public class MainFile {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
 
         CarriageFactory cFactory = new CarriageFactory();
-        CarriageType car1 = cFactory.createCarriage(Type.PASSENGER);
+        Carriage car1 = cFactory.createCarriage("Dining");
 
         System.out.println(car1.cleaningRoutine());
     }

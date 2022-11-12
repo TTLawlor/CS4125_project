@@ -13,17 +13,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarriageFactory {
     @Autowired
-    private List<CarriageType> carriageList;
+    private List<Carriage> carriageList;
 
-    private static final Map<CarriageType.Type, CarriageType> carriagesMap = new HashMap<CarriageType.Type, CarriageType>();
+    private static final Map<String, Carriage> carriagesMap = new HashMap<String, Carriage>();
     
     @PostConstruct
-    private List<CarriageType> getCarriageList() {
+    private List<Carriage> getCarriageList() {
         carriageList.stream().forEach(carriage ->carriagesMap.put(carriage.getCarriageType(), carriage));
         return carriageList;
     }
+    
        
-    public CarriageType createCarriage(CarriageType.Type carType) {
-        return carriagesMap.get(carType);
+    public Carriage createCarriage(String carType) {
+        Carriage carriage = carriagesMap.get(carType);
+        if(carriage == null) throw new RuntimeException("Unknown carriage type: " + carType);
+        return carriage;
     }
 }
