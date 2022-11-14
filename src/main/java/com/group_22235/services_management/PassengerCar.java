@@ -15,17 +15,40 @@ import org.springframework.stereotype.Component;
 @DiscriminatorValue(value = "PASSENGER")
 public class PassengerCar extends Carriage{
 
-    @Transient
-    private List<Boolean> seats = new ArrayList<Boolean>();
-
     @Column(name = "first_class")
     private Boolean firstClass = false;
 
+    @Column(name = "total_seats")
+    private int seatNum;
+
+    @Column(name = "seats_avaliable")
+    private int seatsAvaliable;
+
+    @Transient
+    private List<Boolean> seats = new ArrayList<Boolean>();
+
+    @Transient
     String freq = "Multiple times a day";
 
     public void setSeatStatus(int seatNum, Boolean occupied) {
+        this.seatNum = seatNum;
         // -1 offset as no 0 seat like in arraylist
         seats.set(seatNum - 1, occupied);
+    }
+ 
+    public int getSeatNum() {
+        return seatNum;
+    }
+
+    public int getSeatsAvaliable() {
+        int seatsAvaliable = 0;
+        for (Boolean value : seats) {
+            // if value is equal to True
+            if (value.booleanValue()) {
+                seatsAvaliable ++;
+            }
+        }
+        return seatsAvaliable;
     }
 
     public Boolean getSeatStatus(int seatNum) {
@@ -47,11 +70,6 @@ public class PassengerCar extends Carriage{
     @Override
     public String cleaningRoutine() {
         return "Work Level:" + Carriage.WorkLevel.HIGH + "\nFrequency: " + freq;
-    }
-
-    @Override
-    public String getCarriageType() {
-        return "Passenger carriage";
     }
 
     @Override

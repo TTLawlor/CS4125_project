@@ -19,7 +19,7 @@ public class CarriageFactory {
     
     @PostConstruct
     private List<Carriage> getCarriageList() {
-        carriageList.stream().forEach(carriage ->carriagesMap.put(carriage.getCarriageType(), carriage));
+        carriageList.stream().forEach(carriage ->carriagesMap.put(carriage.getClass().getName(), carriage));
         return carriageList;
     }
     

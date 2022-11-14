@@ -3,7 +3,7 @@ package com.group_22235.services_management;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -11,20 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 @DiscriminatorValue(value = "STORAGE")
 public class StorageCar extends Carriage{
-    @Id
-    @Column(name = "id")
-    long carriageID;
     
+    @Transient
     String freq = "Every 3 days";
 
     @Override
     public String cleaningRoutine() {
         return "Work Level:" + Carriage.WorkLevel.LOW + "\nFrequency: " + freq;
-    }
-
-    @Override
-    public String getCarriageType() {
-        return "Storage carriage";
     }
 
     @Override

@@ -13,7 +13,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-    name = "CARRIAGE_TYPE",
+    name = "CARRIAGE",
     discriminatorType = DiscriminatorType.STRING
 )
 public abstract class Carriage {
@@ -30,8 +30,6 @@ public abstract class Carriage {
     
     // Should include work level: "Low, Moderate, High" and frequency: "Multiple times a day, Once a day, Every 3 days"
     public abstract String cleaningRoutine();
-
-    public abstract String getCarriageType();
 
     public abstract boolean checkStatus();
 
