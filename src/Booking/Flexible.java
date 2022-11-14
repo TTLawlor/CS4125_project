@@ -2,23 +2,18 @@ package Booking;
 
 public class Flexible extends AssignTicketType {
     
-private int timeLimit;
+    private double additionalFee = 2;
+    private double additionalTime = 23;
 
-    public Flexible(TicketType ticket) {
+    public Flexible(Ticket ticket) {
         super(ticket);
     }
-    
-    public void setTimeLimit(int timeLimit) {
-        this.timeLimit = timeLimit;
+ 
+    public double getTimeLimit() {
+        return super.getTimeLimit() - additionalTime;
     }
 
-    public int getTimeLimit(){
-        return timeLimit;
+    public double getPrice() {
+        return ticket.getPrice() + additionalFee;
     }
-    
-    @Override
-	public void assign(){
-		super.assign();
-		System.out.print(" Flexiticket");
-	}
 }

@@ -1,24 +1,21 @@
 package Booking;
 
-public class masterTicket extends AssignTicketType {
+public class MasterTicket extends Ticket {
     
     private Boolean master = true;
-
-    public masterTicket(TicketType ticket) {
-        super(ticket);
-    }
-    
-    @Override
-	public void assign(){
-		super.assign();
-
-	}
-
-    public void setMaster(Boolean master) {
-        this.master = master;
-    }
+    private double timeLimit = Double.POSITIVE_INFINITY;
 
     public Boolean getMaster() {
         return master;
+    }
+
+    @Override 
+    public double getTimeLimit(){
+        return timeLimit;
+    }
+
+    @Override
+    public double getPrice() {
+        return 0;
     }
 }

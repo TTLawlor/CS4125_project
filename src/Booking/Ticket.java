@@ -1,18 +1,11 @@
 package Booking;
 
-public class BasicTicket implements TicketType {
+public abstract class Ticket {
 
     private String depStation, arrStation; // Will need changing to Station obj
     private String passType, time, date, qrCode;
     private int passQuantity, refNumber;
-    private double price;
-    //private TicketType tickType;
-
-    @Override
-    public void assign() {
-        System.out.println(getDepStation() + "\n" + getArrStation());
-        System.out.println("This is a Ticket");
-    }
+    protected double price;
 
     public void setDepStation(String depStation){
         this.depStation = depStation;
@@ -70,19 +63,22 @@ public class BasicTicket implements TicketType {
         return passQuantity;
     }
 
-    public void setRefNumber(int refNumber){ //would we just randomise this??
-        this.refNumber = refNumber;          //could just have it go up from a 
-    }                                        // 00001 system or something
+    public void setRefNumber(int refNumber){ 
+        this.refNumber = refNumber;         
+    }           
 
     public int getRefNumber(){
         return refNumber;
     }
 
-    public void setPrice(double price){
-        this.price = price;
-    }
 
-    public double getPrice(){
-        return price;
-    }
+    public void setPrice(double price){ 
+        this.price = price;         
+    } 
+    
+    
+    public abstract double getPrice();
+
+    public abstract double getTimeLimit();
+
 }

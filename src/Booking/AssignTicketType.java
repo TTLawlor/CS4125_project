@@ -1,14 +1,17 @@
 package Booking;
 
-public abstract class AssignTicketType implements TicketType {
-    protected TicketType ticket;
+public abstract class AssignTicketType extends Ticket {
+    protected Ticket ticket;
 	
-	public AssignTicketType(TicketType t){
+	public AssignTicketType(Ticket t){
 		this.ticket=t;
 	}
 	
-	@Override
-	public void assign() {
-        this.ticket.assign();
+	public double getTimeLimit() {
+        return ticket.getTimeLimit();
+	}
+
+	public double getPrice() {
+        return ticket.getPrice();
 	}
 }

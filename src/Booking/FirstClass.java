@@ -2,31 +2,35 @@ package Booking;
 
 public class FirstClass extends AssignTicketType {
     private boolean firstClass = true;
-    private int timeLimit;
-    
-    public FirstClass(TicketType ticket) {
+    private double additionalFee;
+    private double additionalTime = 23;
+
+
+    public FirstClass(Ticket ticket) {
         super(ticket);
     }
 
-    @Override
-	public void assign(){
-		super.assign();
-		System.out.print("First Class = " + getFirstClass());
-	}
-
-    public void setFirstClass(Boolean firstClass) {
-        this.firstClass = firstClass;
+    
+    public double getAdditionalFee() {
+        return additionalFee;
     }
+
+
+    public void setAdditionalFee(double additionalFee) {
+        this.additionalFee = additionalFee;
+    }
+
 
     public Boolean getFirstClass() {
         return firstClass;
     }
 
-    public void setTimeLimit(int timeLimit) {
-        this.timeLimit = timeLimit;
+    public double getTimeLimit() {
+        return super.getTimeLimit() - additionalTime;
     }
 
-    public int getTimeLimit(){
-        return timeLimit;
+    public double getPrice(){
+        return ticket.getPrice() + additionalFee;
     }
+
 }
