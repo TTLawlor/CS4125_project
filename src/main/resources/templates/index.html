@@ -4,66 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
-
-    <link rel="stylesheet" type="text/css" th:href="@{\resources\static\css\style.css}" />
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Hibernian Rail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head> 
 <body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Hibernian Rail</h2>
+            </div>
 
-<!-- Main Navigation -->
-<header class="header">
-    <a href="#default" class="logo">CompanyLogo</a>
-    <div class="header-right">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Strike Information</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Log In</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Book<t/a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact<t/a></li>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">STRIKES</a></li>
+                    <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
+                    <li><a href="#">ADMIN</a></li>
                 </ul>
             </div>
+
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+
+        </div> 
+        <div class="content">
+            <h1>Irelands <span>TOP</span> Railway</h1>
+            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
+                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
+                <br> a quae totam ipsa illum minus laudantium?</p>
+                <div class="form">
+                    <h2>Login Here</h2>
+                    <input type="email" name="email" placeholder="Enter Email Here">
+                    <input type="password" name="" placeholder="Enter Password Here">
+                    <button class="btnn"><a href="#">Login</a></button>
+                    <p class="link">Don't have an account<br>
+                    <a href="#">Sign up </a> here</a></p>
+                </div>
         </div>
-    </nav>
-</header>
-<!-- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <a class="navbar-brand" th:href="@{/}">Hibernian Rail</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        
+	<!-- --Plan-- -->
+	    <div class="content">
+			<h1>Payment Plan</h1><br>
+			<h2>Become a member today!</h2>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
+                    expedita atque eveniet</p> <br>
+			<button type="button">Sign Up</button>
+		</div>
 
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Search</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/BookTicket}">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@{/BookTicket}"><span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
+    <!-- Footer -->
+
     </div>
-</nav> -->
-
-<!-- Content Section -->
-<section layout:fragment="content">
-    <p>This is filled by the content template.</p>
-</section>
-
-<!-- Footer -->
-<footer class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
-            <p class="text-muted">&copy; 2022 Business Name. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-<!-- Optional Section -->
-<th:block layout:fragment="optional" />
-
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </body>
 </html>

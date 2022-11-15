@@ -11,4 +11,10 @@ public class HomeController {
     public String index() {
         return "index";
     }
+    
+    @GetMapping("/BookTicket")
+    public String bookTicket() {
+    return "BookTicket";
+}
+
 }

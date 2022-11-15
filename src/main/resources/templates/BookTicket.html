@@ -4,48 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Hibernian Rail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
+</head> 
 <body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Hibernian Rail</h2>
+            </div>
 
-<!-- Main Navigation -->
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <a class="navbar-brand" th:href="@{/}">Hibernian Rail</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/About}">About Us</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">STRIKES</a></li>
+                    <li><a th:href="@{/BookTicket.html}">BOOKINGS</a></li>
+                    <li><a href="#">ADMIN</a></li>
+                </ul>
+            </div>
 
-<!-- Content Section -->
-<section layout:fragment="content">
-    <p>TESTING</p>
-</section>
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+        </div> 
+        <div class="content">
+            <div class="">
 
-<!-- Footer -->
-<footer class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
-            <p class="text-muted">&copy; 2022 Business Name. All rights reserved.</p>
+                <div class="">
+                    <h1>Reserve Your Ticket</h1>
+                </div>
+    
+                <div class="">
+                    <input type="radio" class="radio" name="r">
+                    <label class="text-white">One Way</label>
+                    <input type="radio" class="radio" name="r">
+                    <label class="text-white">Return</label>
+                </div>
+    
+                <div class="signup-content2">
+                    <input type="text" placeholder="From" class="input bg-dark">
+                    <input type="text" placeholder="To" class="input bg-dark"><br>
+                
+    
+                <label class="text-white" style="margin-left:10px;">Depart</label>
+                <input type="date" class="tarikh bg-dark text-white">
+                <label class="text-white" style="margin-left:10px;">Return</label>
+                <input type="date" class="tarikh bg-dark">
+    
+                <input type="number" class="bg-dark person" placeholder="Adults">
+                <input type="number" class="bg-dark person" placeholder="Children"><br>
+    
+                <label class="text-white travel">Travel Class</label>
+                <select class="bg-dark text-white travel2">
+                    <option></option>
+                    <option>Member</option>
+                    <option>Guest</option>
+                </select>
+    
+                <input type="submit" value="Check Availability" class="submit-btn bg-warning">
+            </div>
+            </div>
+        </form>
         </div>
+        
+    <!-- Footer -->
+
     </div>
-</footer>
-
-<!-- Optional Section -->
-<th:block layout:fragment="optional" />
-
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </body>
 </html>
