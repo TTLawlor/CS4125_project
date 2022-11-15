@@ -1,4 +1,4 @@
-package com.group_22235.services_management;
+package com.group_22235.generics;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public abstract class BaseServiceImpl<T extends Carriage, ID>
+public abstract class ABaseServiceImpl<T extends ABaseEntity, ID>
         implements IBaseService<T, ID>{
     
     private IBaseRepository<T, ID> abstractBaseRepository;
     
     @Autowired
-    public BaseServiceImpl(IBaseRepository<T, ID> abstractBaseRepository) {
+    public ABaseServiceImpl(IBaseRepository<T, ID> abstractBaseRepository) {
         this.abstractBaseRepository = abstractBaseRepository;
     }
 
@@ -42,10 +42,10 @@ public abstract class BaseServiceImpl<T extends Carriage, ID>
     }
 
     @Override
-    public T updateById(T entity, ID entityId) {
+    public T updateById(ID entityId) {
         Optional<T> optional = abstractBaseRepository.findById(entityId);
         if(optional.isPresent()){
-            return (T) abstractBaseRepository.save(entity);
+            return (T) abstractBaseRepository.save(optional.get());
         }else{
             return null;
         }

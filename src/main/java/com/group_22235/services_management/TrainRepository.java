@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.group_22235.generics.IBaseRepository;
 
 @Repository
-public interface StorageCarRepository extends IBaseRepository<ACarriage, Long>{
+public interface TrainRepository extends IBaseRepository<Train, Long>{
     
 }

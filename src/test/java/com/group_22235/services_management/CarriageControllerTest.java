@@ -4,22 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-// import com.group_22235.services_management.CarriageType.Type;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 public class CarriageControllerTest {
 
 
     @Autowired
-    private Carriage cFactory;
+	private TestEntityManager entityManager;
 
     
     @Test
     void testGetCarriageType() throws Exception {
-        // CarriageFactory cFactory = new CarriageFactory();
-        // CarriageType car1 = cFactory.createCarriage(Type.PASSENGER);
-        assertNotNull(cFactory);
-        // CarriageType car1 = cFactory.createCarriage(Type.PASSENGER);
         // String r = controller.getCarriageCleanRoutine(car1.getCarriageType());
     }
 }
