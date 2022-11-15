@@ -18,57 +18,87 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="#">HOME</a></li>
+                    <li><a th:href="@{/index}">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
                     <li><a href="#">STRIKES</a></li>
-                    <li><a th:href="@{/BookTicket.html}">BOOKINGS</a></li>
-                    <li><a href="#">ADMIN</a></li>
+                    <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
+                    <li><a th:href="@{/Admin}">ADMIN</a></li>
                 </ul>
             </div>
 
             <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type To text">
+                <input id="greyph" class="srch" type="search" name="" placeholder="Search">
                 <a href="#"> <button class="btn">Search</button></a>
             </div>
+
         </div> 
         <div class="content">
             <div class="">
-
                 <div class="">
-                    <h1>Reserve Your Ticket</h1>
+                    <h1>Book Your Ticket</h1>
                 </div>
     
                 <div class="">
                     <input type="radio" class="radio" name="r">
-                    <label class="text-white">One Way</label>
+                    <label class="text">One Way</label>
                     <input type="radio" class="radio" name="r">
-                    <label class="text-white">Return</label>
+                    <label class="text">Return</label>
                 </div>
     
                 <div class="signup-content2">
-                    <input type="text" placeholder="From" class="input bg-dark">
-                    <input type="text" placeholder="To" class="input bg-dark"><br>
+                    <input id="greyph" type="text" placeholder="From" class="bg-black">
+                    <input id="greyph" type="text" placeholder="To" class="bg-black"><br>
                 
     
                 <label class="text-white" style="margin-left:10px;">Depart</label>
-                <input type="date" class="tarikh bg-dark text-white">
+                <input type="date" class="tarikh bg-dark text-black">
                 <label class="text-white" style="margin-left:10px;">Return</label>
-                <input type="date" class="tarikh bg-dark">
-    
-                <input type="number" class="bg-dark person" placeholder="Adults">
-                <input type="number" class="bg-dark person" placeholder="Children"><br>
-    
-                <label class="text-white travel">Travel Class</label>
-                <select class="bg-dark text-white travel2">
-                    <option></option>
+                <input type="date" class="tarikh bg-dark text-black">
+                
+                <label class="text-white">Adult</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                
+                <label class="text-white">Student</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+                <label class="text-white">Child</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+                <!-- <label class="text-white" style="margin-left:10px;">Ticket Type</label>
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Adults">
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Children">
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Students"><br> -->
+                    <br>
+                <label class="text-white">Travel Class</label>
+                <select class="bg-white text-black">
                     <option>Member</option>
                     <option>Guest</option>
                 </select>
     
-                <input type="submit" value="Check Availability" class="submit-btn bg-warning">
+                <input type="submit" value="Check Availability" class="">
             </div>
             </div>
-        </form>
         </div>
         
     <!-- Footer -->

@@ -1,4 +1,4 @@
-package com.group_22235.ui;
+package com.group_22235;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
