@@ -1,4 +1,4 @@
-package com.group_22235;
+package com.group_22235.ui;
 import com.group_22235.ServicesManagement.CarriageType;
 import com.group_22235.ServicesManagement.ConcCarTypeCreator;
 
