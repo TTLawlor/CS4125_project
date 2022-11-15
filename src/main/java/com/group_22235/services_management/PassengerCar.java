@@ -8,12 +8,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import org.springframework.stereotype.Component;
-
 @Entity
-@Component
 @DiscriminatorValue(value = "PASSENGER")
-public class PassengerCar extends Carriage{
+public class PassengerCar extends ACarriage{
 
     @Column(name = "first_class")
     private Boolean firstClass = false;
@@ -69,11 +66,16 @@ public class PassengerCar extends Carriage{
 
     @Override
     public String cleaningRoutine() {
-        return "Work Level:" + Carriage.WorkLevel.HIGH + "\nFrequency: " + freq;
+        return "Work Level:" + ACarriage.WorkLevel.HIGH + "\nFrequency: " + freq;
     }
 
     @Override
     public boolean checkStatus() {
         return true;
+    }
+
+    @Override
+    public String getType() {
+        return "PASSENGER";
     }
 }

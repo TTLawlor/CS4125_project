@@ -9,10 +9,11 @@ import com.group_22235.generics.ABaseServiceImpl;
 
 @Service
 @Transactional
-public class PassengerCarService extends ABaseServiceImpl<ACarriage, Long> implements ICarriageService{
-    
-    public PassengerCarService(PassengerCarRepository pRepository) {
-        super(pRepository);
-    }
+public class StorageCarService extends ABaseServiceImpl<ACarriage, Long> implements ICarriageService{
 
+    public StorageCarService(StorageCarRepository sRepository) {
+        super(sRepository);
+    }
+    
+    
 }

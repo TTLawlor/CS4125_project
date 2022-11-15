@@ -1,4 +1,4 @@
-package com.group_22235.services_management;
+package com.group_22235.generics;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,5 +6,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 
 @NoRepositoryBean
-public interface IBaseRepository<T extends Carriage, E> extends JpaRepository<T, E> {
+public interface IBaseRepository<T extends ABaseEntity, E> extends JpaRepository<T, E> {
 }

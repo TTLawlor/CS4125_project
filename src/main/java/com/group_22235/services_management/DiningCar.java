@@ -1,16 +1,12 @@
 package com.group_22235.services_management;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import org.springframework.stereotype.Component;
-
 @Entity
-@Component
 @DiscriminatorValue(value = "DINING")
-public class DiningCar extends Carriage {
+public class DiningCar extends ACarriage {
     // Could have menu?
 
     @Transient
@@ -18,12 +14,17 @@ public class DiningCar extends Carriage {
 
     @Override
     public String cleaningRoutine() {
-        return "Work Level:" + Carriage.WorkLevel.MODERATE + "\nFrequency: " + freq;
+        return "Work Level:" + ACarriage.WorkLevel.MODERATE + "\nFrequency: " + freq;
     }
 
     @Override
     public boolean checkStatus() {
         return true;
+    }
+
+    @Override
+    public String getType() {
+        return "DINING";
     }
 
 }
