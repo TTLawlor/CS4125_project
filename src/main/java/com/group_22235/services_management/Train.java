@@ -12,11 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.group_22235.generics.ABaseEntity;
+import com.group_22235.staff.Observer;
 
 @Entity
 @Table(name = "TRAIN")
 @AttributeOverride(name = "id", column = @Column(name = "train_id"))
-public class Train extends ABaseEntity {
+public class Train extends ABaseEntity implements Observer{
 
     @OneToMany(mappedBy = "train")
     private List<ACarriage> carriages = new ArrayList<ACarriage>();
@@ -95,5 +96,11 @@ public class Train extends ABaseEntity {
 
     public void setRoutes(List<RouteTimetable> routes) {
         this.routes = routes;
+    }
+
+    @Override
+    public void updateStrike() {
+        // Cancel train for the day by wiping all routes for the train
+        routes.clear();
     }
 }
