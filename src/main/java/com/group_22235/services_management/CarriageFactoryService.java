@@ -1,9 +1,14 @@
-package com.group_22235.ServicesManagement;
+package com.group_22235.services_management;
 
-public class ConcCarTypeCreator {
-    public CarriageType createCarriage(String carType) {
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class CarriageFactoryService {
+
+    public ACarriage createCarriage(String carType) {
         if(carType == null){
-            return null;
+            throw new RuntimeException("Unknown carriage type: " + carType);
         } 
         if(carType.equalsIgnoreCase("PASSENGER")) {
             return new PassengerCar();
