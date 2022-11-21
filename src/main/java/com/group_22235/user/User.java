@@ -3,12 +3,30 @@ package com.group_22235.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.group_22235.booking.Ticket;
-import com.group_22235.staff.Observer;
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-public class User implements Observer{
+import com.group_22235.booking.Ticket;
+import com.group_22235.generics.ABaseEntity;
+import com.group_22235.staff.IObserverService;
+
+@Entity
+@Table(name = "USER")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@AttributeOverride(name = "id", column = @Column(name = "user_id"))
+public class User extends ABaseEntity implements IObserverService{
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Transient
     private List<Ticket> tickets;
 
     public User(String name, String email) {

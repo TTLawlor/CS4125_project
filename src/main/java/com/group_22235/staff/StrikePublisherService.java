@@ -3,9 +3,12 @@ package com.group_22235.staff;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StrikePublisher {
+import org.springframework.stereotype.Service;
+
+@Service
+public class StrikePublisherService {
     // Observer currently made up of Train and User
-    private List<Observer> observers = new ArrayList<>();
+    private List<IObserverService> observers = new ArrayList<>();
     private int state;
 
     public int getState() {
@@ -17,12 +20,12 @@ public class StrikePublisher {
         notifyAllObservers();
      }
   
-     public void attach(Observer observer){
+     public void attach(IObserverService observer){
         observers.add(observer);		
      }
   
      public void notifyAllObservers(){
-        for (Observer observer : observers) {
+        for (IObserverService observer : observers) {
            observer.updateStrike();
         }
      }

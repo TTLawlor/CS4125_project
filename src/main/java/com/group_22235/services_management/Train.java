@@ -12,12 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.group_22235.generics.ABaseEntity;
-import com.group_22235.staff.Observer;
+import com.group_22235.staff.IObserverService;
 
 @Entity
 @Table(name = "TRAIN")
 @AttributeOverride(name = "id", column = @Column(name = "train_id"))
-public class Train extends ABaseEntity implements Observer{
+public class Train extends ABaseEntity implements IObserverService{
 
     @OneToMany(mappedBy = "train")
     private List<ACarriage> carriages = new ArrayList<ACarriage>();
