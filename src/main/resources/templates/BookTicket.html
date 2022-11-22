@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Hibernian Rail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+
+</head> 
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Hibernian Rail</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a th:href="@{/index}">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">STRIKES</a></li>
+                    <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
+                    <li><a th:href="@{/Admin}">ADMIN</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input id="greyph" class="srch" type="search" name="" placeholder="Search">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+
+        </div> 
+        <div class="content">
+            <div class="">
+                <div class="">
+                    <h1>Book Your Ticket</h1>
+                </div>
+    
+                <div class="">
+                    <input type="radio" class="radio" name="r">
+                    <label class="text">One Way</label>
+                    <input type="radio" class="radio" name="r">
+                    <label class="text">Return</label>
+                </div>
+    
+                <div class="signup-content2">
+                    <input id="greyph" type="text" placeholder="From" class="bg-black">
+                    <input id="greyph" type="text" placeholder="To" class="bg-black"><br>
+                
+    
+                <label class="text-white" style="margin-left:10px;">Depart</label>
+                <input type="date" class="tarikh bg-dark text-black">
+                <label class="text-white" style="margin-left:10px;">Return</label>
+                <input type="date" class="tarikh bg-dark text-black">
+                
+                <label class="text-white">Adult</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                
+                <label class="text-white">Student</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+                <label class="text-white">Child</label>
+                <select class="bg-white text-black">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+                <!-- <label class="text-white" style="margin-left:10px;">Ticket Type</label>
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Adults">
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Children">
+                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Students"><br> -->
+                    <br>
+                <label class="text-white">Travel Class</label>
+                <select class="bg-white text-black">
+                    <option>Member</option>
+                    <option>Guest</option>
+                </select>
+    
+                <input type="submit" value="Check Availability" class="">
+            </div>
+            </div>
+        </div>
+        
+    <!-- Footer -->
+
+    </div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>
