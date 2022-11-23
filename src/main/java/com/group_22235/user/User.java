@@ -26,16 +26,33 @@ public class User extends ABaseEntity implements IObserverService{
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
+    // Role or roles? unsure
+    @Column(name = "roles")
+    private String roles;
+
+    // IDK if this is needed??
+    @Column(name = "active")
+    private Boolean active;
+
     @Transient
     private List<Ticket> tickets;
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-        tickets = new ArrayList<>();
-    }
+    // public User(){
 
-    
+    // }
+
+    // public User(String name, String email, String password, String roles, Boolean active) {
+    //     this.name = name;
+    //     this.email = email;
+    //     this.password = password;
+    //     this.roles = roles;
+    //     this.active = active;
+    //     tickets = new ArrayList<>();
+    // }
+
 
     public String getName() {
         return name;
@@ -59,6 +76,37 @@ public class User extends ABaseEntity implements IObserverService{
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public String getRoles() {
+        return roles;
+    }
+
+
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    
+    public Boolean getActive() {
+        return active;
+    }
+
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
 
     // public void bookTicket(Customer info){
@@ -82,6 +130,5 @@ public class User extends ABaseEntity implements IObserverService{
     public void updateStrike() {
         // Display msg to user on site that no train running and mock email user
         System.out.println("No trains running due to strike");
-    }
-    
+    }    
 }

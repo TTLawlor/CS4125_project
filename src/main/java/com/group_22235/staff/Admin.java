@@ -1,5 +1,6 @@
 package com.group_22235.staff;
 
+import javax.management.relation.Role;
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,10 +21,10 @@ public class Admin extends User{
     @JoinColumn(name = "account_id", nullable = false)
     Account acc;
 
-    public Admin(String name, String email, String password) {
-        super(name, email);
-        acc = new Account(password, true);
-    }
+    // public Admin(String name, String email, String password, String roles, Boolean active) {
+    //     super(name, email, password, roles, active);
+    //     acc = new Account(password, true);
+    // }
 
     public void updateRouteTimetbale(RouteTimetable oldRT, RouteTimetable newRT) {
         oldRT = newRT;

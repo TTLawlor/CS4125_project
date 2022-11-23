@@ -24,11 +24,11 @@ public class FrontDesk extends User{
     @JoinColumn(name = "station_id", nullable = false)
     Station station;
 
-    public FrontDesk(String name, String email, String password, Station station) {
-        super(name, email);
-        this.station = station;
-        acc = new Account(password, true);
-    }
+    // public FrontDesk(String name, String email, String password, String roles, Boolean active, Station station) {
+    //     super(name, email, password, roles, active);
+    //     this.station = station;
+    //     acc = new Account(password, true);
+    // }
 
     public Station getStation() {
         return station;

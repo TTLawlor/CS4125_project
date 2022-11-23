@@ -19,10 +19,10 @@ public class Member extends User {
     @Column(name = "travel_points")
     int travelPoints;
 
-    public Member(String name, String email, String password) {
-        super(name, email);
-        acc = new Account(password, false);
-    }
+    // public Member(String name, String email, String password, String roles, Boolean active) {
+    //     super(name, email, password, roles, active);
+    //     acc = new Account(password, false);
+    // }
 
     public void calcDiscount(){
 

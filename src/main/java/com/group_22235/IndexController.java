@@ -1,13 +1,13 @@
-package com.group_22235;
+// package com.group_22235;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class IndexController {
+// @Controller
+// public class IndexController {
 
-    @RequestMapping(value = "/index")
-    public String index() {
-        return "index";
-    }
-}
+//     @RequestMapping(value = "/index")
+//     public String index() {
+//         return "index";
+//     }
+// }
