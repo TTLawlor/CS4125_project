@@ -31,4 +31,9 @@ public class HomeController {
     public String adminTest() {
         return ("<h1>Welcome AdminTest</h1>");
     }
+
+    @GetMapping("/LoginTest")
+    public String loginTest() {
+        return "LoginTest";
+    }
 }
