@@ -40,18 +40,18 @@ public class User extends ABaseEntity implements IObserverService{
     @Transient
     private List<Ticket> tickets;
 
-    // public User(){
+    public User(){
 
-    // }
+    }
 
-    // public User(String name, String email, String password, String roles, Boolean active) {
-    //     this.name = name;
-    //     this.email = email;
-    //     this.password = password;
-    //     this.roles = roles;
-    //     this.active = active;
-    //     tickets = new ArrayList<>();
-    // }
+    public User(String name, String email, String password, String roles, Boolean active) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.active = active;
+        tickets = new ArrayList<>();
+    }
 
 
     public String getName() {

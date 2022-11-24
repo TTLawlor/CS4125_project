@@ -3,7 +3,6 @@ package com.group_22235;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -36,6 +35,10 @@ public class MyUserDetails implements UserDetails{
     }
 
     public MyUserDetails(){
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
