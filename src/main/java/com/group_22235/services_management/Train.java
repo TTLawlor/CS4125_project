@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,38 +20,48 @@ import com.group_22235.staff.IObserverService;
 @AttributeOverride(name = "id", column = @Column(name = "train_id"))
 public class Train extends ABaseEntity implements IObserverService{
 
-    @OneToMany(mappedBy = "train")
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
     private List<ACarriage> carriages = new ArrayList<ACarriage>();
 
     @Column(name = "num_carriages")
+    private int numCarriages;
+
+    @Transient
     private final int maxCarCount = 10;
 
     @Transient
-    private CarriageFactoryService newCar = new CarriageFactoryService();;
+    private CarriageFactoryService newCar = new CarriageFactoryService();
 
     @OneToMany
-    @JoinColumn(name="train_id", nullable=false)
+    @JoinColumn(name="train_id")
     private List<RouteTimetable> routes;
 
     
-    // Default train is 6 passeneger cars and a storage car
+    // Default train is 7 passeneger cars and a storage car
     public Train() {
-        carriages.add(newCar.createCarriage("STORAGE"));
+        ACarriage storageCar = newCar.createCarriage("STORAGE");
+        storageCar.setTrain(this);
+        carriages.add(storageCar);
         for(int i = 0; i < 7; i++) {
-            carriages.add(newCar.createCarriage("PASSENGER"));
+            ACarriage passCarriage = newCar.createCarriage("PASSENGER");
+            passCarriage.setTrain(this);
+            carriages.add(passCarriage);
         }
 
+        setNumCarriages(carriages.size());
         routes = new ArrayList<RouteTimetable>();
     }
 
-    public Train(ArrayList<RouteTimetable> rts) {
+    public Train(List<RouteTimetable> rts) {
         this();
         routes = rts;
+        setNumCarriages(carriages.size());
     }
 
-    public Train(ArrayList<ACarriage> cars, ArrayList<RouteTimetable> rts) {
+    public Train(List<ACarriage> cars, List<RouteTimetable> rts) {
         this(rts);
         carriages = cars;
+        setNumCarriages(carriages.size());
     }
 
     public void assignCar(ACarriage car) {
@@ -61,15 +72,21 @@ public class Train extends ABaseEntity implements IObserverService{
         }
         
         // Most likely to be passenger, so first check
-        if(car instanceof PassengerCar) {
+        if(car.getType().equalsIgnoreCase("PASSENGER")) {
             carriages.add(car);
         }
-        if(!hasDiningCar() && car instanceof DiningCar){
+        if(!hasDiningCar() && car.getType().equalsIgnoreCase("DINING")){
             carriages.add(car);
         }
-        if(!hasStorageCar() && car instanceof StorageCar){
+        if(!hasStorageCar() && car.getType().equalsIgnoreCase("STORAGE")){
             carriages.add(car);
         }
+        car.setTrain(this);
+        setNumCarriages(carriages.size());
+    }
+
+    public void setNumCarriages(int numCarriages) {
+        this.numCarriages = numCarriages;
     }
 
     public List<ACarriage> listCars(){

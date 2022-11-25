@@ -32,8 +32,11 @@ public abstract class ABaseServiceImpl<T extends ABaseEntity, ID>
 
     @Override
     public T findById(ID entityId) {
-        Optional<T> carriage = abstractBaseRepository.findById(entityId);
-        return carriage.get();
+        if (entityId == null) {
+            return null;
+        }
+        return abstractBaseRepository.findById(entityId).isPresent() ? 
+        abstractBaseRepository.findById(entityId).get(): null;
     }
 
     @Override

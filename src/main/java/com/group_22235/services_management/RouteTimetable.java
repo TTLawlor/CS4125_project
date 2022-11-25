@@ -4,38 +4,31 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.group_22235.generics.ABaseEntity;
 
 @Entity
-@Table(name = "ROUTE")
+@Table(name = "TIMETABLE")
 @AttributeOverride(name = "id", column = @Column(name = "route_timetable_id"))
 public class RouteTimetable extends ABaseEntity {
     // This class stores an indiviudal routeTimetable, made up of 1 list of stations(route) and 1 list of times(??)
 
-    @Transient
-    private Map<Station, LocalTime> routeTimetable;
+    @ElementCollection
+    @CollectionTable(name = "STATION_TIMETABLE", joinColumns = @JoinColumn(name = "ROUTE_TIMETABLE_ID")) 
+    @MapKeyJoinColumn(name="STATION_ID")
+    @Column(name="LocalTime")
+    private Map<Station, LocalTime> routeTimetable = new LinkedHashMap<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name="STATION_TIMETABLE",
-        joinColumns=
-            @JoinColumn(name="TIMETABLE_ID", referencedColumnName="ROUTE_TIMETABLE_ID"),
-        inverseJoinColumns=
-            @JoinColumn(name="STATION_ID", referencedColumnName="STATION_ID")
-    )
-    private Set<Station> stations = routeTimetable.keySet();
+    public RouteTimetable(){}
 
     // Constructor takes in list of stations and times, creating a timetable for a route
     public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times){
@@ -43,7 +36,6 @@ public class RouteTimetable extends ABaseEntity {
             System.out.println("Number of stations and times do not match. Please try again");
             return;
         }
-        routeTimetable = new LinkedHashMap<>();
 
         for (int i = 0; i < stations.size(); i++) {
             Station st = stations.get(i);
