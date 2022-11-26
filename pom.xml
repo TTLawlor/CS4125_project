@@ -21,6 +21,8 @@
         <java.version>11</java.version>
         <rest.assured.version>2.3.3</rest.assured.version>
         <spring-loaded.version>1.2.8.RELEASE</spring-loaded.version>
+        <sonar.organization>scgithub</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
