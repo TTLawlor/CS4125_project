@@ -1,12 +1,10 @@
 package com.group_22235.services_management;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,35 +16,12 @@ public class TrainServiceTest {
     @Autowired
     private TrainService trainService;
 
-    @Autowired
-	private CarriageFactoryService cFactoryService;
-
-    @Autowired
-    private PassengerCarService passengerCarService;
-
     @Autowired 
     RouteTimetableService routeTimetableService;
 
     @Autowired 
     StationService stationService;
 
-    @Test
-    void testPassengerCarriagesFindAll() throws Exception {
-        Train train1 = new Train();
-        train1.assignCar(cFactoryService.createCarriage("DINING"));
-        train1.assignCar(cFactoryService.createCarriage("PASSENGER"));
-        train1.assignCar(cFactoryService.createCarriage("PASSENGER"));
-        trainService.save(train1);
-        assertNotNull(passengerCarService.findAll());
-    }
-
-    @Test
-    void testTrainFindByID(){
-        Train train = new Train();
-        trainService.save(train);
-        assertNotNull(trainService.findById(train.getId()));
-    }
-    
     @Test
     void testUpdateStrikeRemoveMapping(){
         // Creating timetable

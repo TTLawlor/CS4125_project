@@ -89,6 +89,10 @@ public class Train extends ABaseEntity implements IObserverService{
         this.numCarriages = numCarriages;
     }
 
+    public int getNumCarriages() {
+        return numCarriages;
+    }
+
     public List<ACarriage> listCars(){
         return carriages;   
     }

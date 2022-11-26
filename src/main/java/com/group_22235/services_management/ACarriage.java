@@ -30,7 +30,7 @@ public abstract class ACarriage extends ABaseEntity {
         HIGH
     }
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "train_id")
     private Train train;
     
