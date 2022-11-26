@@ -24,6 +24,7 @@ public class MyUserDetails implements UserDetails{
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.active = user.getActive();
+        // Splits up multiple roles if listed. I.e, memeber has ROLE_USER and ROLE_MEMBER
         this.authorities = Arrays.stream(user.getRoles().split(","))
                     .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
