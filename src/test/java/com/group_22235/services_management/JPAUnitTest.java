@@ -1,4 +1,4 @@
-package com.group_22235;
+package com.group_22235.services_management;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +20,7 @@ import com.group_22235.services_management.TrainRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class JPAUnitTest {
+class JPAUnitTest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -29,7 +29,7 @@ public class JPAUnitTest {
     TrainRepository repository;
 
     @Test
-    public void should_store_a_train() {
+    void should_store_a_train() {
         Train train = repository.save(new Train());
 
         assertThat(train).hasFieldOrPropertyWithValue("numCarriages", 8);
@@ -55,7 +55,7 @@ public class JPAUnitTest {
         entityManager.persist(train2);
 
         Optional<Train> actual_train = repository.findById(train2.getId());
-        assertThat(actual_train.get()).isEqualTo(train2);
+        assertThat(actual_train).contains(train2);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class JPAUnitTest {
         repository.save(original_train);
         
         Train testTrain = repository.findById(train.getId()).get();
-        assertThat(testTrain.hasStorageCar());
+        assertTrue(testTrain.hasStorageCar());
     }
 
     @Test

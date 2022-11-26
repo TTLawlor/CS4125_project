@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class TrainServiceTest {
+class TrainServiceTest {
     
     @Autowired
     private TrainService trainService;

@@ -1,5 +1,6 @@
 package com.group_22235.services_management;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class TrainTest {
+class TrainTest {
     
     Train train;
 
@@ -19,49 +20,49 @@ public class TrainTest {
     CarriageFactoryService carriageFactoryService;
 
     @Test
-    public void should_create_instance_no_args(){
+    void should_create_instance_no_args(){
         train = new Train();
         assertNotNull(train);
     }
 
     @Test
-    public void should_add_carriage(){
+    void should_add_carriage(){
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
-        assertTrue(train.getNumCarriages() == 9);
+        assertEquals(9, train.getNumCarriages());
     }
 
     @Test
-    public void should_not_add_over_max_carriage(){
+    void should_not_add_over_max_carriage(){
         // maxCarCount = 10
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
-        assertTrue(train.getNumCarriages() == 10);
+        assertEquals(10, train.getNumCarriages());
     }
 
     @Test
-    public void should_not_add_over_one_dining_carriage(){
+    void should_not_add_over_one_dining_carriage(){
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("DINING"));
         train.assignCar(carriageFactoryService.createCarriage("DINING"));
-        assertTrue(train.getNumCarriages() == 9);
+        assertEquals(9, train.getNumCarriages());
     }
 
     @Test
-    public void should_not_add_over_one_storage_carriage(){
+    void should_not_add_over_one_storage_carriage(){
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("STORAGE"));
-        assertTrue(train.getNumCarriages() == 8);
+        assertEquals(8, train.getNumCarriages());
     }
 
     @Test
-    public void should_remove_all_routes_when_strike(){
+    void should_remove_all_routes_when_strike(){
         // Creating timetable
         // Creating stations list(route)
         ArrayList<Station> route = new ArrayList<>();

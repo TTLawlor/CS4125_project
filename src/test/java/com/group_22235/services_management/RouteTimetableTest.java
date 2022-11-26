@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class RouteTimetableTest {
+class RouteTimetableTest {
     
     RouteTimetable routeTimetable;
 
     @Test
-    public void should_not_populate_routetimetable_when_parameters_different_sizes(){
+    void should_not_populate_routetimetable_when_parameters_different_sizes(){
         // Creating stations list(route)
         ArrayList<Station> route = new ArrayList<>();
         route.add(new Station("Station1", "Kerry"));
@@ -36,7 +36,7 @@ public class RouteTimetableTest {
     }
 
     @Test
-    public void should_add_to_routetimetable(){
+    void should_add_to_routetimetable(){
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -48,7 +48,7 @@ public class RouteTimetableTest {
     }
 
     @Test
-    public void should_not_add_duplicates_to_routetimetable(){
+    void should_not_add_duplicates_to_routetimetable(){
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -61,7 +61,7 @@ public class RouteTimetableTest {
     }
 
     @Test
-    public void should_check_if_exists_in_remove_from_routetimetable(){
+    void should_check_if_exists_in_remove_from_routetimetable(){
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -75,7 +75,7 @@ public class RouteTimetableTest {
     }
 
     @Test
-    public void should_remove_from_routetimetable(){
+    void should_remove_from_routetimetable(){
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
