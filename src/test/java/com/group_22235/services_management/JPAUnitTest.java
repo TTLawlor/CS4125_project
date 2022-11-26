@@ -11,10 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import com.group_22235.services_management.CarriageFactoryService;
-import com.group_22235.services_management.Train;
-import com.group_22235.services_management.TrainRepository;
-
 // Tests the generic JPA methods used across all classes. 
 // More specific methods will be tested in the service class tests.
 
