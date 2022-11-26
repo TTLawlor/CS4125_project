@@ -3,13 +3,18 @@ package com.group_22235.services_management;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import lombok.NoArgsConstructor;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
@@ -19,16 +24,15 @@ import com.group_22235.generics.ABaseEntity;
 @Entity
 @Table(name = "TIMETABLE")
 @AttributeOverride(name = "id", column = @Column(name = "route_timetable_id"))
+@NoArgsConstructor
 public class RouteTimetable extends ABaseEntity {
     // This class stores an indiviudal routeTimetable, made up of 1 list of stations(route) and 1 list of times(??)
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "STATION_TIMETABLE", joinColumns = @JoinColumn(name = "ROUTE_TIMETABLE_ID")) 
     @MapKeyJoinColumn(name="STATION_ID")
     @Column(name="LocalTime")
     private Map<Station, LocalTime> routeTimetable = new LinkedHashMap<>();
-
-    public RouteTimetable(){}
 
     // Constructor takes in list of stations and times, creating a timetable for a route
     public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times){
@@ -86,6 +90,15 @@ public class RouteTimetable extends ABaseEntity {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        String result = "RouteTimetable: \n";
+        List<Entry<Station, LocalTime>> list = new ArrayList<>(routeTimetable.entrySet());
+        list.sort(Entry.comparingByValue());
+        for (Map.Entry<Station, LocalTime> entry : list) {
+            result += "Loc: " + entry.getKey() + ", Time: " + entry.getValue() + "\n";
+        }
+        return result;
+    }
 
 }
