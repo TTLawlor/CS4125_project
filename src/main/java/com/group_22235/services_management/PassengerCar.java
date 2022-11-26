@@ -22,7 +22,7 @@ public class PassengerCar extends ACarriage{
     private int seatsAvaliable;
 
     @Transient
-    private List<Boolean> seats = new ArrayList<Boolean>();
+    private List<Boolean> seats = new ArrayList<>();
 
     @Transient
     String freq = "Multiple times a day";
@@ -38,7 +38,7 @@ public class PassengerCar extends ACarriage{
     }
 
     public int getSeatsAvaliable() {
-        int seatsAvaliable = 0;
+        seatsAvaliable = 0;
         for (Boolean value : seats) {
             // if value is equal to True
             if (value.booleanValue()) {

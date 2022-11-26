@@ -26,13 +26,13 @@ import com.group_22235.generics.ABaseEntity;
 @AttributeOverride(name = "id", column = @Column(name = "route_timetable_id"))
 @NoArgsConstructor
 public class RouteTimetable extends ABaseEntity {
-    // This class stores an indiviudal routeTimetable, made up of 1 list of stations(route) and 1 list of times(??)
+    // This class stores an indiviudal timetable, made up of 1 list of stations(route) and 1 list of times(??)
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "STATION_TIMETABLE", joinColumns = @JoinColumn(name = "ROUTE_TIMETABLE_ID")) 
     @MapKeyJoinColumn(name="STATION_ID")
     @Column(name="LocalTime")
-    private Map<Station, LocalTime> routeTimetable = new LinkedHashMap<>();
+    private Map<Station, LocalTime> timetable = new LinkedHashMap<>();
 
     // Constructor takes in list of stations and times, creating a timetable for a route
     public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times){
@@ -44,17 +44,17 @@ public class RouteTimetable extends ABaseEntity {
         for (int i = 0; i < stations.size(); i++) {
             Station st = stations.get(i);
             LocalTime t = times.get(i);
-            routeTimetable.put(st, t);
+            timetable.put(st, t);
             // System.out.println("Loc: " + st.getLocation() + "      Time: " + t.toString());
         }
     }
 
     public Map<Station, LocalTime> getRouteTimetable() {
-        return routeTimetable;
+        return timetable;
     }
 
-    public void setRouteTimetable(Map<Station, LocalTime> routeTimetable) {
-        this.routeTimetable = routeTimetable;
+    public void setRouteTimetable(Map<Station, LocalTime> timetable) {
+        this.timetable = timetable;
     }
 
     public void addStop(Station st, LocalTime t) {
@@ -62,7 +62,7 @@ public class RouteTimetable extends ABaseEntity {
             System.out.println("Stop already exists in this route");
             return;
         }
-        routeTimetable.put(st, t);
+        timetable.put(st, t);
     }
 
     public void removeStop(Station st) {
@@ -70,7 +70,7 @@ public class RouteTimetable extends ABaseEntity {
             System.out.println("Stop doesn't exist in this route");
             return;
         }
-        routeTimetable.remove(st);
+        timetable.remove(st);
     }
 
     public void updateStopTime(Station st, LocalTime t) {
@@ -78,11 +78,11 @@ public class RouteTimetable extends ABaseEntity {
             System.out.println("Stop doesn't exist in this route");
             return;
         }
-        routeTimetable.put(st, t);
+        timetable.put(st, t);
     }
 
     private Boolean checkStopExists(Station st){
-        for (Map.Entry<Station, LocalTime> entry : routeTimetable.entrySet()) {
+        for (Map.Entry<Station, LocalTime> entry : timetable.entrySet()) {
             if (entry.getKey() == st)  {
                 return true;
             }
@@ -93,12 +93,14 @@ public class RouteTimetable extends ABaseEntity {
     @Override
     public String toString() {
         String result = "RouteTimetable: \n";
-        List<Entry<Station, LocalTime>> list = new ArrayList<>(routeTimetable.entrySet());
+        List<Entry<Station, LocalTime>> list = new ArrayList<>(timetable.entrySet());
         list.sort(Entry.comparingByValue());
+        StringBuilder bld = new StringBuilder();
+        bld.append(result);
         for (Map.Entry<Station, LocalTime> entry : list) {
-            result += "Loc: " + entry.getKey() + ", Time: " + entry.getValue() + "\n";
+            bld.append("Loc: " + entry.getKey() + ", Time: " + entry.getValue() + "\n");
         }
-        return result;
+        return bld.toString();
     }
 
 }

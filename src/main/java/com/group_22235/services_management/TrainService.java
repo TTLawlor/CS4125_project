@@ -21,7 +21,7 @@ public class TrainService extends ABaseServiceImpl<Train, Long> implements ITrai
     public void updateStrike(Train train) {
         train.updateStrike();
         for (RouteTimetable routeTimetable : routeTimetableService.findAllByTrainID(train.getId())) {
-            routeTimetableService.deleteById(routeTimetable.getId());;
+            routeTimetableService.deleteById(routeTimetable.getId());
         }
     }
 

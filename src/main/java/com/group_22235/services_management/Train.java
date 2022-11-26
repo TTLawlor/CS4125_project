@@ -21,7 +21,7 @@ import com.group_22235.staff.IObserverService;
 public class Train extends ABaseEntity implements IObserverService{
 
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
-    private List<ACarriage> carriages = new ArrayList<ACarriage>();
+    private List<ACarriage> carriages = new ArrayList<>();
 
     @Column(name = "num_carriages")
     private int numCarriages;
