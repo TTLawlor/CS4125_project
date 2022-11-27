@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public abstract class AController<T extends ABaseEntity, ID> {
     private IBaseService<T, ID> baseService;
 
-    public AController(IBaseService<T, ID> baseService) {
+    protected AController(IBaseService<T, ID> baseService) {
         this.baseService = baseService;
     }
 

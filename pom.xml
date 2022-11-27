@@ -18,9 +18,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.group_22235.App</start-class>
-        <java.version>19</java.version>
+        <java.version>11</java.version>
         <rest.assured.version>2.3.3</rest.assured.version>
         <spring-loaded.version>1.2.8.RELEASE</spring-loaded.version>
+        <sonar.organization>scgithub</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -72,6 +74,13 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -86,6 +95,50 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+    <profile>
+    <id>coverage</id>
+    <build>
+    <plugins>
+        <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+            <execution>
+            <id>prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+            </execution>
+            <execution>
+            <id>report</id>
+            <goals>
+                <goal>report</goal>
+            </goals>
+            <configuration>
+                <formats>
+                <format>XML</format>
+                </formats>
+            </configuration>
+            </execution>
+        </executions>
+        </plugin>
+    </plugins>
+    </build>
+    </profile>
+    </profiles>
 </project>
