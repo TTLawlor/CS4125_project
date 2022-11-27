@@ -21,4 +21,19 @@ public class HomeController {
     public String admin() {
         return "Admin";
     }
+
+    @GetMapping("/UserTest")
+    public String userTest() {
+        return ("<h1>Welcome UserTest</h1>");
+    }
+
+    @GetMapping("/AdminTest")
+    public String adminTest() {
+        return ("<h1>Welcome AdminTest</h1>");
+    }
+
+    @GetMapping("/LoginTest")
+    public String loginTest() {
+        return "LoginTest";
+    }
 }

@@ -16,13 +16,13 @@ public abstract class ABaseServiceImpl<T extends ABaseEntity, ID>
     private IBaseRepository<T, ID> abstractBaseRepository;
     
     @Autowired
-    public ABaseServiceImpl(IBaseRepository<T, ID> abstractBaseRepository) {
+    protected ABaseServiceImpl(IBaseRepository<T, ID> abstractBaseRepository) {
         this.abstractBaseRepository = abstractBaseRepository;
     }
 
     @Override
     public T save(T entity) {
-        return (T) abstractBaseRepository.save(entity);
+        return abstractBaseRepository.save(entity);
     }
 
     @Override
@@ -32,20 +32,27 @@ public abstract class ABaseServiceImpl<T extends ABaseEntity, ID>
 
     @Override
     public T findById(ID entityId) {
-        Optional<T> carriage = abstractBaseRepository.findById(entityId);
-        return carriage.get();
+        if (entityId == null) {
+            return null;
+        }
+        Optional<T> optional = abstractBaseRepository.findById(entityId);
+        if(optional.isPresent()){
+            return abstractBaseRepository.save(optional.get());
+        }else{
+            return null;
+        }
     }
 
     @Override
     public T update(T entity) {
-        return (T) abstractBaseRepository.save(entity);
+        return abstractBaseRepository.save(entity);
     }
 
     @Override
     public T updateById(ID entityId) {
         Optional<T> optional = abstractBaseRepository.findById(entityId);
         if(optional.isPresent()){
-            return (T) abstractBaseRepository.save(optional.get());
+            return abstractBaseRepository.save(optional.get());
         }else{
             return null;
         }

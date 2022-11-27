@@ -36,10 +36,20 @@
                  expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
                 <br> a quae totam ipsa illum minus laudantium?</p>
                 <div class="form">
-                    <h2>Login Here</h2>
-                    <input id="whiteph" type="email" name="email" placeholder="Enter Email Here">
-                    <input id="whiteph" type="password" name="" placeholder="Enter Password Here">
-                    <button class="btnn"><a href="#">Login</a></button>
+                    <form name="f" th:action="@{/LoginTest}" method="post">
+                            <h2>Please Login</h2>
+                            <div th:if="${param.error}" class="alert alert-error">    
+                                Invalid username and password.
+                            </div>
+                            <div th:if="${param.logout}" class="alert alert-success"> 
+                                You have been logged out.   
+                            </div>
+                            <input type="text" id="username" name="username" placeholder="Enter Email Here"/>        
+                            <input type="password" id="password" name="password" placeholder="Enter Password Here"/>    
+                            <div class="form-actions">
+                                <button type="submit" class="btnn">Log in</button>
+                            </div>
+                    </form>  
                     <p class="link">Don't have an account<br>
                     <a href="#">Sign up </a> here</a></p>
                 </div>

@@ -3,90 +3,81 @@ package com.group_22235.services_management;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Map.Entry;
+
+import lombok.NoArgsConstructor;
 
 import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.group_22235.generics.ABaseEntity;
 
 @Entity
-@Table(name = "ROUTE")
+@Table(name = "TIMETABLE")
 @AttributeOverride(name = "id", column = @Column(name = "route_timetable_id"))
+@NoArgsConstructor
 public class RouteTimetable extends ABaseEntity {
-    // This class stores an indiviudal routeTimetable, made up of 1 list of stations(route) and 1 list of times(??)
+    // This class stores ONE indiviudal timetable, made up of 1 list of stations(route) and 1 list of times(??)
 
-    @Transient
-    private Map<Station, LocalTime> routeTimetable;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name="STATION_TIMETABLE",
-        joinColumns=
-            @JoinColumn(name="TIMETABLE_ID", referencedColumnName="ROUTE_TIMETABLE_ID"),
-        inverseJoinColumns=
-            @JoinColumn(name="STATION_ID", referencedColumnName="STATION_ID")
-    )
-    private Set<Station> stations = routeTimetable.keySet();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "STATION_TIMETABLE", joinColumns = @JoinColumn(name = "ROUTE_TIMETABLE_ID")) 
+    @MapKeyJoinColumn(name="STATION_ID")
+    @Column(name="LocalTime")
+    private Map<Station, LocalTime> timetable = new LinkedHashMap<>();
 
     // Constructor takes in list of stations and times, creating a timetable for a route
-    public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times){
+    public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times) throws IllegalArgumentException {
         if (stations.size() != times.size()){
-            System.out.println("Number of stations and times do not match. Please try again");
-            return;
+            throw new IllegalArgumentException("Number of stations and times do not match. Please try again");
         }
-        routeTimetable = new LinkedHashMap<>();
 
         for (int i = 0; i < stations.size(); i++) {
             Station st = stations.get(i);
             LocalTime t = times.get(i);
-            routeTimetable.put(st, t);
-            // System.out.println("Loc: " + st.getLocation() + "      Time: " + t.toString());
+            timetable.put(st, t);
         }
     }
 
     public Map<Station, LocalTime> getRouteTimetable() {
-        return routeTimetable;
+        return timetable;
     }
 
-    public void setRouteTimetable(Map<Station, LocalTime> routeTimetable) {
-        this.routeTimetable = routeTimetable;
+    public void setRouteTimetable(Map<Station, LocalTime> timetable) {
+        this.timetable = timetable;
     }
 
-    public void addStop(Station st, LocalTime t) {
+    public void addStop(Station st, LocalTime t) throws Exception {
         if(checkStopExists(st)) {
-            System.out.println("Stop already exists in this route");
-            return;
+            throw new Exception("Stop already exists in this route");
         }
-        routeTimetable.put(st, t);
+        timetable.put(st, t);
     }
 
-    public void removeStop(Station st) {
+    public void removeStop(Station st) throws Exception {
         if(!checkStopExists(st)) {
-            System.out.println("Stop doesn't exist in this route");
-            return;
+            throw new Exception("Stop doesn't exist in this route");
         }
-        routeTimetable.remove(st);
+        timetable.remove(st);
     }
 
-    public void updateStopTime(Station st, LocalTime t) {
+    public void updateStopTime(Station st, LocalTime t) throws Exception {
         if(!checkStopExists(st)) {
-            System.out.println("Stop doesn't exist in this route");
-            return;
+            throw new Exception("Stop doesn't exists in this route");
         }
-        routeTimetable.put(st, t);
+        timetable.put(st, t);
     }
 
     private Boolean checkStopExists(Station st){
-        for (Map.Entry<Station, LocalTime> entry : routeTimetable.entrySet()) {
+        for (Map.Entry<Station, LocalTime> entry : timetable.entrySet()) {
             if (entry.getKey() == st)  {
                 return true;
             }
@@ -94,6 +85,17 @@ public class RouteTimetable extends ABaseEntity {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        String result = "RouteTimetable: \n";
+        List<Entry<Station, LocalTime>> list = new ArrayList<>(timetable.entrySet());
+        list.sort(Entry.comparingByValue());
+        StringBuilder bld = new StringBuilder();
+        bld.append(result);
+        for (Map.Entry<Station, LocalTime> entry : list) {
+            bld.append("Loc: " + entry.getKey() + ", Time: " + entry.getValue() + "\n");
+        }
+        return bld.toString();
+    }
 
 }

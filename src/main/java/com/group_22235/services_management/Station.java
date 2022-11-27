@@ -7,9 +7,12 @@ import javax.persistence.Table;
 
 import com.group_22235.generics.ABaseEntity;
 
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "STATION")
 @AttributeOverride(name = "id", column = @Column(name = "station_id"))
+@NoArgsConstructor
 public class Station extends ABaseEntity {
 
     @Column(name = "name")
@@ -37,6 +40,11 @@ public class Station extends ABaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Station [name=" + name + ", location=" + location + "]";
     }
 
 }

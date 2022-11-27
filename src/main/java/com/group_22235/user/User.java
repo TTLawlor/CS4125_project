@@ -1,23 +1,40 @@
 package com.group_22235.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-import com.group_22235.booking.Ticket;
-import com.group_22235.staff.Observer;
+import com.group_22235.generics.ABaseEntity;
 
-public class User implements Observer{
+@Entity
+@Table(name = "USER")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@AttributeOverride(name = "id", column = @Column(name = "user_id"))
+public class User extends ABaseEntity {
+    @Column(name = "name")
     private String name;
-    private String email;
-    private List<Ticket> tickets;
 
-    public User(String name, String email) {
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "roles")
+    private String roles;
+
+    public User() {}
+
+    public User(String name, String email, String password, String roles) {
         this.name = name;
         this.email = email;
-        tickets = new ArrayList<>();
+        this.password = password;
+        this.roles = roles;
     }
 
-    
 
     public String getName() {
         return name;
@@ -41,29 +58,25 @@ public class User implements Observer{
         this.email = email;
     }
 
-
-
-    // public void bookTicket(Customer info){
-    //     Ticket newTicket = new Ticket();
-    //     tickets.add(newTicket);
-    // }
-
-    public Ticket viewTicket(Ticket t){
-        return t;
+    public String getPassword() {
+        return password;
     }
 
-    public List<Ticket> viewAllTickets(){
-        return tickets;
+
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void amendTicket(Ticket t){
 
+
+    public String getRoles() {
+        return roles;
     }
 
-    @Override
-    public void updateStrike() {
-        // Display msg to user on site that no train running and mock email user
-        System.out.println("No trains running due to strike");
-    }
-    
+
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }    
 }
