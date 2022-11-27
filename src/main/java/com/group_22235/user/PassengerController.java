@@ -11,27 +11,27 @@ import com.group_22235.generics.AController;
 import com.group_22235.generics.IBaseController;
 
 @RestController
-public class AccountController extends AController<Account, Long> implements IBaseController<Account, Long>{
+public class PassengerController extends AController<Passenger, Long> implements IBaseController<Passenger, Long>{
     
     @Autowired
-    public AccountController(AccountService baseService) {
+    public PassengerController(PassengerService baseService) {
         super(baseService);
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET, value = "/account/{id}")
-    public Account getByID(Long id) throws Exception {
+    @RequestMapping(method = RequestMethod.GET, value = "/passenger/{id}")
+    public Passenger getByID(Long id) throws Exception {
         return super.getByID(id);
-    }
+    } 
 
     @Override
-    @RequestMapping(method = RequestMethod.GET, value = "/accounts")
-    public List<Account> getAll() throws Exception {
+    @RequestMapping(method = RequestMethod.GET, value = "/passenger")
+    public List<Passenger> getAll() throws Exception {
         return super.getAll();
     }
 
     @Override
-    public void delete(Account entity) {
+    public void delete(Passenger entity) {
         super.delete(entity);
     }
 

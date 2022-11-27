@@ -8,9 +8,9 @@ import com.group_22235.generics.ABaseServiceImpl;
 
 @Service
 @Transactional
-public class MemberService extends ABaseServiceImpl<Member, Long> implements IMemberService{
+public class PassengerService extends ABaseServiceImpl<Passenger, Long> implements IPassengerService{
     
-    public MemberService(MemberRepository mRepository) {
+    public PassengerService(PassengerRepository mRepository) {
         super(mRepository);
     }
     
