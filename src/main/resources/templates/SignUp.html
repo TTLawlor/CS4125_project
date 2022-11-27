@@ -16,11 +16,11 @@
 
             <div class="menu">
                 <ul>
-                    <li><a th:href="@{/Index}">HOME</a></li>
+                    <li><a href="#">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
                     <li><a href="#">STRIKES</a></li>
                     <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
-                    <li><a href="#">ADMIN</a></li>
+                    <li><a th:href="@{/Admin}">ADMIN</a></li>
                 </ul>
             </div>
 
@@ -29,7 +29,23 @@
                 <a href="#"> <button class="btn">Search</button></a>
             </div>
 
+        </div> 
+        <div class="content">
+            <div class="">
+                <h1>Sign Up</h1>
+            </div>
+            <br>
+                <div class="signup-content2">
+                    <form name="f" th:action="@{/Index}" method="post">
+                            <input type="text" id="username" name="username" placeholder="Enter Email Here"/>        
+                            <input type="password" id="password" name="password" placeholder="Enter Password Here"/>    
+                            <div class="form-actions">
+                                <button type="submit" class="btnn">Sign Up</button>
+                            </div>
+                    </form>  
+                </div>
+        </div>
+
     </div>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </body>
 </html>

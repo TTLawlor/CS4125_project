@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/BookTicket")
     public String bookTicket() {
-    return "BookTicket";
+        return "BookTicket";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/Index")
     public String index() {
-    return "index";
+        return "Index";
+    }
+
+    @GetMapping("/SignUp")
+    public String signUp() {
+        return "SignUp";
     }
 
     @GetMapping("/Admin")

@@ -44,12 +44,11 @@ public class User extends ABaseEntity implements IObserverService{
 
     }
 
-    public User(String name, String email, String password, String roles, Boolean active) {
+    public User(String name, String email, String password, String roles) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.active = active;
         tickets = new ArrayList<>();
     }
 

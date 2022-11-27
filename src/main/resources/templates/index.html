@@ -17,7 +17,7 @@
             <div class="menu">
                 <ul>
                     <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a th:href="@{/SignUp}">ABOUT</a></li>
                     <li><a href="#">STRIKES</a></li>
                     <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
                     <li><a th:href="@{/Admin}">ADMIN</a></li>
@@ -36,7 +36,7 @@
                  expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
                 <br> a quae totam ipsa illum minus laudantium?</p>
                 <div class="form">
-                    <form name="f" th:action="@{/LoginTest}" method="post">
+                    <form name="f" th:action="@{/Index}" method="post">
                             <h2>Please Login</h2>
                             <div th:if="${param.error}" class="alert alert-error">    
                                 Invalid username and password.

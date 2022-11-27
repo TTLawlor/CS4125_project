@@ -423,3 +423,11 @@ button:hover{
 .show {
   display: block;
 }
+
+.signup {
+  font-family: 'Times New Roman';
+  font-size: 50px;
+  padding-left: 50px;
+  margin-top: 9%;
+  letter-spacing: 2px;
+}

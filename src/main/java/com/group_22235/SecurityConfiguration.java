@@ -36,12 +36,12 @@ public class SecurityConfiguration {
                 .antMatchers("/").permitAll()                
                 .and()
             .formLogin()
-                .loginPage("/LoginTest")
+                .loginPage("/Index")
                 .permitAll()
                 .and()
             .logout(logout -> logout
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Must be used as due to CSRF protection being enables by default, cannot logout with post request
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/Index")
 			);
             // .userDetailsService(userDetailsService);
             
