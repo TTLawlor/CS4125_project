@@ -92,4 +92,14 @@ public class Subscription extends ABaseEntity{
         this.renewalDate = renewalDate;
     }
     
+    public void paySubscription(IPaymentStrategy paymentMethod){
+		double amount = getCost();
+		paymentMethod.pay(amount);
+
+        Date oldRenewal = getRenewalDate();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(oldRenewal);
+        cal.add(Calendar.MONTH, getPaymentPlan());
+        setRenewalDate(cal.getTime());
+	}
 }

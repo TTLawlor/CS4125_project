@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.group_22235.staff.StrikeReport;
 
 @SpringBootTest
 class TrainTest {
@@ -26,7 +29,7 @@ class TrainTest {
     }
 
     @Test
-    void should_add_carriage(){
+    void should_add_carriage() throws Exception{
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
@@ -34,7 +37,7 @@ class TrainTest {
     }
 
     @Test
-    void should_not_add_over_max_carriage(){
+    void should_not_add_over_max_carriage() throws Exception{
         // maxCarCount = 10
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
@@ -45,7 +48,7 @@ class TrainTest {
     }
 
     @Test
-    void should_not_add_over_one_dining_carriage(){
+    void should_not_add_over_one_dining_carriage() throws Exception{
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("DINING"));
@@ -54,7 +57,7 @@ class TrainTest {
     }
 
     @Test
-    void should_not_add_over_one_storage_carriage(){
+    void should_not_add_over_one_storage_carriage() throws Exception{
         // Default train is 7 passeneger cars and a storage car
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("STORAGE"));
@@ -87,7 +90,10 @@ class TrainTest {
         ttList.add(rTime);
 
         train = new Train(ttList);
-        train.updateStrike();
+        LocalDate start = LocalDate.now();
+        LocalDate end = LocalDate.now().plusDays(2);
+        StrikeReport report = new StrikeReport(start, end, ttList, "Weather");
+        train.update(report);
         assertTrue(train.getRoutes().isEmpty());
     }
 }

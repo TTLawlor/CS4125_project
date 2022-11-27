@@ -36,7 +36,7 @@ class RouteTimetableTest {
     }
 
     @Test
-    void should_add_to_routetimetable(){
+    void should_add_to_routetimetable() throws Exception{
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -48,7 +48,7 @@ class RouteTimetableTest {
     }
 
     @Test
-    void should_not_add_duplicates_to_routetimetable(){
+    void should_not_add_duplicates_to_routetimetable() throws Exception{
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -61,7 +61,7 @@ class RouteTimetableTest {
     }
 
     @Test
-    void should_check_if_exists_in_remove_from_routetimetable(){
+    void should_check_if_exists_in_remove_from_routetimetable() throws Exception{
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");
@@ -75,7 +75,7 @@ class RouteTimetableTest {
     }
 
     @Test
-    void should_remove_from_routetimetable(){
+    void should_remove_from_routetimetable() throws Exception{
         routeTimetable = new RouteTimetable();
 
         Station station1 = new Station("Station1", "Kerry");

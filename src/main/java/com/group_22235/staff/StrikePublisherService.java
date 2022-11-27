@@ -7,27 +7,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StrikePublisherService {
-    // Observer currently made up of Train and User
-    private List<IObserverService> observers = new ArrayList<>();
-    private int state;
+   // List of all classes in update list. Currently made up of Train and User
+   private List<IObserverService> observers = new ArrayList<>();
+   private StrikeReport rep;
 
-    public int getState() {
-        return state;
-     }
-  
-     public void setState(int state) {
-        this.state = state;
-        notifyAllObservers();
-     }
-  
-     public void attach(IObserverService observer){
-        observers.add(observer);		
-     }
-  
-     public void notifyAllObservers(){
-        for (IObserverService observer : observers) {
-           observer.updateStrike();
-        }
-     }
+   public void registerObserver(IObserverService o) {
+      observers.add(o);
+   }
+
+   public void unregisterObserver(IObserverService o) {
+      observers.remove(observers.indexOf(o));
+   }
+
+   public void notifyAllObservers(){
+      for (IObserverService observer : observers) {
+         observer.update(rep);
+      }
+   }
     
 }

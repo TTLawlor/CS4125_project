@@ -8,7 +8,7 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.group_22235.user.User;
+import com.group_22235.user.Passenger;
 
 @SpringBootTest
 public class IPaymentStrategyTest {
@@ -22,9 +22,9 @@ public class IPaymentStrategyTest {
         int cvv = 123;
         APayment payment = new CreditCardStrategy(cardType, cardName, cardNumber, expiryDate, cvv);
         IPaymentStrategy paymentStrategy = payment;
-        User accountHolder = new User(cardName, "johndoe@gmail.com", 3);
+        Passenger member = new Passenger(cardName, "johndoe@gmail.com", "password", 3);
 
-        accountHolder.paySubscription(paymentStrategy);
+        member.pay(paymentStrategy, "SUBSCRIPTION");
 
         Date current = new Date();
         Calendar cal = Calendar.getInstance();
@@ -32,7 +32,7 @@ public class IPaymentStrategyTest {
         cal.add(Calendar.MONTH, 6);
         current = cal.getTime();
 
-        assertEquals(current.toString(), accountHolder.getSubscription().getRenewalDate().toString());
+        assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 
     }
 }

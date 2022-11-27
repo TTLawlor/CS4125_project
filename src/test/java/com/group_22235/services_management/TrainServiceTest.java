@@ -3,12 +3,15 @@ package com.group_22235.services_management;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.group_22235.staff.StrikeReport;
 
 @SpringBootTest
 class TrainServiceTest {
@@ -64,7 +67,10 @@ class TrainServiceTest {
         trainService.save(realT);
 
         assertNotNull(routeTimetableService.findById(rTime.getId()));
-        trainService.updateStrike(realT);
+        LocalDate start = LocalDate.now();
+        LocalDate end = LocalDate.now().plusDays(2);
+        StrikeReport report = new StrikeReport(start, end, ttList, "Weather");
+        trainService.updateStrike(realT, report);
         assertNull(routeTimetableService.findById(rTime.getId()));
     }
 

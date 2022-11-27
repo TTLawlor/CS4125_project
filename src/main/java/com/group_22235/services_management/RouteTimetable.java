@@ -26,7 +26,7 @@ import com.group_22235.generics.ABaseEntity;
 @AttributeOverride(name = "id", column = @Column(name = "route_timetable_id"))
 @NoArgsConstructor
 public class RouteTimetable extends ABaseEntity {
-    // This class stores an indiviudal timetable, made up of 1 list of stations(route) and 1 list of times(??)
+    // This class stores ONE indiviudal timetable, made up of 1 list of stations(route) and 1 list of times(??)
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "STATION_TIMETABLE", joinColumns = @JoinColumn(name = "ROUTE_TIMETABLE_ID")) 
@@ -35,17 +35,15 @@ public class RouteTimetable extends ABaseEntity {
     private Map<Station, LocalTime> timetable = new LinkedHashMap<>();
 
     // Constructor takes in list of stations and times, creating a timetable for a route
-    public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times){
+    public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times) throws IllegalArgumentException {
         if (stations.size() != times.size()){
-            System.out.println("Number of stations and times do not match. Please try again");
-            return;
+            throw new IllegalArgumentException("Number of stations and times do not match. Please try again");
         }
 
         for (int i = 0; i < stations.size(); i++) {
             Station st = stations.get(i);
             LocalTime t = times.get(i);
             timetable.put(st, t);
-            // System.out.println("Loc: " + st.getLocation() + "      Time: " + t.toString());
         }
     }
 
@@ -57,26 +55,23 @@ public class RouteTimetable extends ABaseEntity {
         this.timetable = timetable;
     }
 
-    public void addStop(Station st, LocalTime t) {
+    public void addStop(Station st, LocalTime t) throws Exception {
         if(checkStopExists(st)) {
-            System.out.println("Stop already exists in this route");
-            return;
+            throw new Exception("Stop already exists in this route");
         }
         timetable.put(st, t);
     }
 
-    public void removeStop(Station st) {
+    public void removeStop(Station st) throws Exception {
         if(!checkStopExists(st)) {
-            System.out.println("Stop doesn't exist in this route");
-            return;
+            throw new Exception("Stop doesn't exist in this route");
         }
         timetable.remove(st);
     }
 
-    public void updateStopTime(Station st, LocalTime t) {
+    public void updateStopTime(Station st, LocalTime t) throws Exception {
         if(!checkStopExists(st)) {
-            System.out.println("Stop doesn't exist in this route");
-            return;
+            throw new Exception("Stop doesn't exists in this route");
         }
         timetable.put(st, t);
     }

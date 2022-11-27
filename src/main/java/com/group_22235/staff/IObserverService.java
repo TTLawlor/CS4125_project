@@ -4,6 +4,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IObserverService {
-    public StrikePublisherService strikePub = new StrikePublisherService();
-    public void updateStrike();
+    public void update(StrikeReport rep);
 }
