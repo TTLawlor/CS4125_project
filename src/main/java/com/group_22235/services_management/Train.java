@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 
 import com.group_22235.generics.ABaseEntity;
 import com.group_22235.staff.IObserverService;
+import com.group_22235.staff.StrikeReport;
 
 @Entity
 @Table(name = "TRAIN")
@@ -48,16 +49,18 @@ public class Train extends ABaseEntity implements IObserverService{
         routes = rts;
     }
 
-    public Train(ArrayList<ACarriage> cars, ArrayList<RouteTimetable> rts) {
-        this(rts);
+    public Train(ArrayList<ACarriage> cars, ArrayList<RouteTimetable> rts) throws ArrayIndexOutOfBoundsException {
+        if(cars.size() > maxCarCount) {
+            throw new ArrayIndexOutOfBoundsException(String.format("Too many cars being added, max is %d/n", maxCarCount));
+        }
         carriages = cars;
+        routes = rts;
     }
 
-    public void assignCar(ACarriage car) {
+    public void assignCar(ACarriage car) throws Exception {
         // Check if carriage limit has been reached
         if(carriages.size() == maxCarCount) {
-            System.out.printf("Maximum number for carraiages (%d) has already been reached/n", maxCarCount);
-            return;
+            throw new ArrayIndexOutOfBoundsException(String.format("Maximum number for carraiages (%d) has already been reached/n", maxCarCount));
         }
         
         // Most likely to be passenger, so first check
@@ -74,6 +77,15 @@ public class Train extends ABaseEntity implements IObserverService{
 
     public List<ACarriage> listCars(){
         return carriages;   
+    }
+
+    // If this is called, we can presume car of that type pre-exists
+    public void removeCar(ACarriage car) throws Exception {
+        if(carriages.size() == 0) {
+            throw new ArrayIndexOutOfBoundsException("No carraiages added yet");
+        }
+        
+        carriages.remove(car);
     }
 
     public Boolean hasDiningCar(){
@@ -98,9 +110,16 @@ public class Train extends ABaseEntity implements IObserverService{
         this.routes = routes;
     }
 
+    // Removes any affected RouteTimetables from routes list
     @Override
-    public void updateStrike() {
-        // Cancel train for the day by wiping all routes for the train
-        routes.clear();
+    public void update(StrikeReport rep) {
+        for (RouteTimetable affRt : rep.getAffectedRoutes()){
+            for (int i = 0; i < routes.size(); i++) {
+                if(affRt == routes.get(i)) {
+                    routes.remove(i);
+                    i--;    // Offsets since one val was taken out, otherwise would skip the new val in the pos of aold one
+                }
+            }
+        }        
     }
 }
