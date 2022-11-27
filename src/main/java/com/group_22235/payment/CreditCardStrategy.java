@@ -14,13 +14,13 @@ public class CreditCardStrategy extends APayment{
     @Column
     private String cardName;
     @Column
-    private int cardNumber;
+    private String cardNumber;
     @Column
     private String expiryDate;
     @Column
     private int cvv;
 
-    public CreditCardStrategy(String cardType, String cardName, int cardNumber, String expiryDate, int cvv) {
+    public CreditCardStrategy(String cardType, String cardName, String cardNumber, String expiryDate, int cvv) {
         this.cardType = cardType;
         this.cardName = cardName;
         this.cardNumber = cardNumber;
