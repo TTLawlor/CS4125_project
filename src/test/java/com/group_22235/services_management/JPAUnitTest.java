@@ -55,6 +55,12 @@ class JPAUnitTest {
     }
 
     @Test
+    void should_return_null_for_search_by_id_empty_entity(){
+        Train train = new Train();
+        assertTrue(repository.findById(train.getId()).isEmpty());
+    }
+
+    @Test
     void should_update_train(){
         CarriageFactoryService cFactoryService = new CarriageFactoryService();
         Train train = new Train();

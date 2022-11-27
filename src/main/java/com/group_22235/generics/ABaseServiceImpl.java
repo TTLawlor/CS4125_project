@@ -32,12 +32,9 @@ public abstract class ABaseServiceImpl<T extends ABaseEntity, ID>
 
     @Override
     public T findById(ID entityId) {
-        if (entityId == null) {
-            return null;
-        }
         Optional<T> optional = abstractBaseRepository.findById(entityId);
         if(optional.isPresent()){
-            return abstractBaseRepository.save(optional.get());
+            return optional.get();
         }else{
             return null;
         }
