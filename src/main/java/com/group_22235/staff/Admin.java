@@ -17,7 +17,7 @@ import com.group_22235.user.User;
 @Table(name = "ADMIN")
 // @AttributeOverride(name = "user_id", column = @Column(name = "admin_id"))
 public class Admin extends User{
-    public Admin(String name, String email, String password, String roles) {
+    public Admin(String name, String email, String password) {
         super(name, email, password, "ROLE_ADMIN");
     }
 

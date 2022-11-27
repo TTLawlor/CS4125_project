@@ -134,9 +134,9 @@ public class Train extends ABaseEntity implements IObserverService{
     // Removes any affected RouteTimetables from routes list
     @Override
     public void update(StrikeReport rep) {
-        for (RouteTimetable affRt : rep.getAffectedRoutes()){
+        for (int a = 0; a < rep.getAffectedRoutes().size(); a++) {
             for (int i = 0; i < routes.size(); i++) {
-                if(affRt == routes.get(i)) {
+                if(rep.getAffectedRoutes().get(a) == routes.get(i)) {
                     routes.remove(i);
                     i--;    // Offsets since one val was taken out, otherwise would skip the new val in the pos of aold one
                 }

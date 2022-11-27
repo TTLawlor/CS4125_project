@@ -26,6 +26,8 @@ public class User extends ABaseEntity {
     @Column(name = "roles")
     private String roles;
 
+    public User() {}
+
     public User(String name, String email, String password, String roles) {
         this.name = name;
         this.email = email;
