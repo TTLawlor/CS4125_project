@@ -2,6 +2,7 @@ package com.group_22235.services_management;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -43,8 +44,17 @@ class TrainTest {
         train = new Train();
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
         train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
-        train.assignCar(carriageFactoryService.createCarriage("PASSENGER"));
+    
         assertEquals(10, train.getNumCarriages());
+
+        Exception thrown = assertThrows(
+           ArrayIndexOutOfBoundsException.class,
+           () -> train.assignCar(carriageFactoryService.createCarriage("PASSENGER")));
+
+        String expected_error = "Maximum number for carraiages";
+        String actual_error = thrown.getMessage();
+
+        assertTrue(actual_error.contains(expected_error));
     }
 
     @Test
