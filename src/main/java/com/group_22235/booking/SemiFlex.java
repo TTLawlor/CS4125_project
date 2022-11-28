@@ -2,19 +2,23 @@ package com.group_22235.booking;
 
 public class SemiFlex extends AssignTicketType {
     
-    private double additionalFee = 1;
-    private double additionalTime = 24;
+    private double additionalFee = 0;
 
-    public SemiFlex(Ticket ticket) {
-        super(ticket);
+    public SemiFlex(ITicketPrice t) {
+        super(t);
     }
  
     public double getTimeLimit() {
-        return super.getTimeLimit() - additionalTime;
+        return 1;
     }
 
-    public double getPrice() {
-        return ticket.getPrice() + additionalFee;
+    public double calcTicketPrice() {
+        return super.calcTicketPrice() + additionalFee;
+    }
+
+    public Boolean getFirstClass() {
+        return false;
     }
 
 }
+

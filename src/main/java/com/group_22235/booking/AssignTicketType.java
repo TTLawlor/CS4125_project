@@ -1,21 +1,20 @@
 package com.group_22235.booking;
 
-public abstract class AssignTicketType extends Ticket {
-    protected Ticket ticket;
-	
-	public AssignTicketType(Ticket t){
-		this.ticket=t;
-	}
-	
-	public double getTimeLimit() {
-        return ticket.getTimeLimit();
+public abstract class AssignTicketType implements ITicketPrice {
+	private ITicketPrice t;
+
+	public AssignTicketType(ITicketPrice t){
+		this.t = t;
 	}
 
-	public double getPrice() {
-        return ticket.getPrice();
+	@Override
+	public double calcTicketPrice() {
+		return t.calcTicketPrice();
 	}
 
-	public Boolean getFirstClass() {
-        return ticket.getFirstClass();
-    }
+	public abstract double getTimeLimit();
+
+	public abstract Boolean getFirstClass();
+
+	
 }

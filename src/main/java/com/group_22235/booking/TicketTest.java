@@ -1,35 +1,26 @@
 package com.group_22235.booking;
 
+import com.group_22235.services_management.Station;
+
 public class TicketTest {
 
 	public static void main(String[] args) {
-		Ticket semi = new PassengerTicket();
-		Ticket demi = new PassengerTicket();
-		
-		Ticket t1 = new Flexible(semi);
-		Ticket t2 = new FirstClass(demi);
-		
-		t1.setArrStation("Derry");
-		t1.setDepStation("Limerick");
-		semi.setPrice(10);
 
-		t2.setArrStation("Donegal");
-		t2.setDepStation("Cork");
-		t2.setPrice(20);
+	    Station s = new Station("Town", "Letterkenny");
+		Station s2 = new Station("Connolly", "Cork");
 
-		System.out.println(t1.getDepStation());
-		System.out.println(t1.getArrStation());
-		System.out.println(semi.getPrice() + " " + semi.getTimeLimit());
-		System.out.println(t1.getPrice() + " " + t1.getTimeLimit());
-		System.out.println("Is first class: " + t1.getFirstClass());
+		Ticket v = new Ticket(s , s2 , "YA", "1:00",
+		2022, 11, 28);
 		
+		ITicketPrice d = new FirstClass( new Adult(v));
 
-		System.out.println("\n*****");
-		
-		System.out.println(t2.getDepStation());
-		System.out.println(t2.getArrStation());
-		System.out.println(t2.getPrice() + " " + t2.getTimeLimit());
-		System.out.println("Is first class: " + t2.getFirstClass());
+		System.out.println(s.getLocation() + "-> " + s2.getLocation());
+		System.out.println(d.calcTicketPrice());
+		System.out.println(d.getTimeLimit());
+		System.out.println(d.getFirstClass());
+		System.out.println(v.getDate());
 
+		System.out.println("--------------");
 	}
+
 }

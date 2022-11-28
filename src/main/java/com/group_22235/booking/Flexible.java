@@ -3,18 +3,22 @@ package com.group_22235.booking;
 public class Flexible extends AssignTicketType {
     
     private double additionalFee = 2;
-    private double additionalTime = 23;
 
-    public Flexible(Ticket ticket) {
-        super(ticket);
+
+    public Flexible(ITicketPrice t) {
+        super(t);
     }
  
     public double getTimeLimit() {
-        return super.getTimeLimit() - additionalTime;
+        return 24;
     }
 
-    public double getPrice() {
-        return ticket.getPrice() + additionalFee;
+    public double calcTicketPrice() {
+        return super.calcTicketPrice() + additionalFee;
+    }
+
+    public Boolean getFirstClass() {
+        return false;
     }
 
 }
