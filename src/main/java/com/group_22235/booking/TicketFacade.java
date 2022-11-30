@@ -20,17 +20,15 @@ public class TicketFacade {
     protected double typePrice, price, timeLimit;
     protected Boolean firstClass;
 
-    public TicketFacade(Station depStation, Station arrStation, int hour, int mins, int year, int month, int day,
+    public TicketFacade(Station depStation, Station arrStation, LocalTime time, LocalDate date,
     String ticketType){
 
         this.depStation = depStation;
         this.arrStation = arrStation;
 
-        LocalTime t = LocalTime.of(hour, mins);
-        this.time = t;
+        this.time = time;
 
-        LocalDate d = LocalDate.of(year, month, day);
-        this.date = d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
         
         setTicketType(ticketType);
 
