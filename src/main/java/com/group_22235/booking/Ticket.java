@@ -8,10 +8,9 @@ import com.group_22235.services_management.Station;
 
 public abstract class Ticket  {
 
-    private Station depStation, arrStation; // Will need changing to Station obj
+    private Station depStation, arrStation;
     private String ticketType, date; 
     protected double price, timeLimit;
-    
     protected Boolean firstClass;
 
 
@@ -41,14 +40,6 @@ public abstract class Ticket  {
     public Station getArrStation(){
         return arrStation;
     }
-
-    // public void setPassType(String passType){
-    //     this.passType = passType;
-    // }
-
-    // public String getPassType(){
-    //     return passType;
-    // }
 
     public String getDate() {
         return date;

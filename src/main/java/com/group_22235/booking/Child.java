@@ -1,19 +1,16 @@
 package com.group_22235.booking;
-
-import com.group_22235.services_management.Station;
-
-public class Child extends Ticket{
+public class Child implements ITicket{
     
-
-    public Child(Station depStation, Station arrStation, String passType, String time, int day, int month, int year,
-            String ticketType) {
-        super(depStation, arrStation, passType, time, day, month, year, ticketType);
-
-    }
+    public double price;
 
     @Override
-    public void setTicketPrice(double price){
-          price = 0;
+    public void setTicketPrice(double typePrice){
+          price = 0 + typePrice;
+        }
+
+    @Override
+    public double getTicketPrice(){
+        return price;
         }
   
 

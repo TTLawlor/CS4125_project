@@ -9,30 +9,17 @@ public class TicketTest {
 	    Station s = new Station("Town", "Letterkenny");
 		Station s2 = new Station("Connolly", "Cork");
 
-	//	Ticket v = new Ticket(s , s2 , "YA", "1:00",
-	//	2022, 11, 28, "FLEX");
+			TicketFacade a = new TicketFacade(s, s2, 12, 30 , 2022, 3, 20, "FIRST");
 		
-
-		// System.out.println(s.getLocation() + "-> " + s2.getLocation());
-		// System.out.println(v.getTicketPrice());
-		// System.out.println(v.getTimeLimit());
-		// System.out.println(v.getFirstClass());
-		// System.out.println(v.getDate());
-
-		System.out.println("--------------");
-
-	//	Ticket g = new Ticket(s , s2 , "YA", "1:00",
-	//	2022, 11, 28, "SEMI");
-
-
-			  // ShapeMaker shapeMaker = new ShapeMaker();
-			 // Ticket tick = new Ticket(s, s2, "Child", "2:00", 22, 3, 2022, "FLEX") ;
-			   TicketFacade aticket = new TicketFacade(s, s2, "Child", "2:00", 22, 3, 2022, "FLEX");
-		 		
-			   aticket.getChildPrice();	
-			   System.out.println(aticket.getArrStation());
+			System.out.println(s.getLocation() + "-> " + s2.getLocation());
+			System.out.println(a.getTicketPrice());
+			a.setYAPrice();
+			System.out.println("Adult price + price: " + a.getYAPrice());
+			System.out.println(a.getTimeLimit());
+			System.out.println(a.getFirstClass());
+			System.out.println(a.getDate());
+			System.out.println(a.getTime());
 			
-		 
 	}
 
 }
