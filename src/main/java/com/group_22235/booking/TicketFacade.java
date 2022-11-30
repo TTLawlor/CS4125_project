@@ -5,19 +5,49 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.group_22235.generics.ABaseEntity;
 import com.group_22235.services_management.Station;
 
-public class TicketFacade {
+@Entity
+@Table(name = "TICKET")
+@AttributeOverride(name = "id", column = @Column(name = "ticket_id"))
+public class TicketFacade extends ABaseEntity{
+    @Transient
     private Adult adult;
+    @Transient
     private Child child;
+    @Transient
     private OAP oap;
+    @Transient
     private YoungAdult youngAdult;
 
-    private Station depStation, arrStation;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "arr_station_id")
+    private Station arrStation;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "dep_station_id")
+    private Station depStation;
+
+    @Column
     private String ticketType, date; 
+    
+    @Column
     private LocalTime time;
 
+    @Column
     protected double typePrice, price, timeLimit;
+
+    @Column
     protected Boolean firstClass;
 
     public TicketFacade(Station depStation, Station arrStation, LocalTime time, LocalDate date,
@@ -44,6 +74,7 @@ public class TicketFacade {
 
     public void setAdultPrice(){
         adult.setTicketPrice(typePrice);
+        price += adult.getTicketPrice();
     }
 
     public double getChildPrice(){
@@ -52,6 +83,7 @@ public class TicketFacade {
 
     public void setChildPrice(){
         child.setTicketPrice(typePrice);
+        price += child.getTicketPrice();
     }
 
     public double getOAPPrice(){
@@ -60,6 +92,7 @@ public class TicketFacade {
 
     public void setOAPPrice(){
         oap.setTicketPrice(typePrice);
+        price += oap.getTicketPrice();
     }
 
     public double getYAPrice(){
@@ -68,6 +101,7 @@ public class TicketFacade {
 
     public void setYAPrice(){
         youngAdult.setTicketPrice(typePrice);
+        price += youngAdult.getTicketPrice();
     }
 
 // Base ticket setters aand getters //
@@ -112,21 +146,25 @@ public class TicketFacade {
         
     switch(ticketType) {
         case "SEMI":
+            this.ticketType = ticketType;
             this.typePrice = 0;
             this.timeLimit = 1;
             this.firstClass = false;
           break;
         case "FLEX":
+            this.ticketType = ticketType;
             this.typePrice = 2;
             this.timeLimit = 24;
             this.firstClass = false;
           break;
         case "FIRST":
+            this.ticketType = ticketType;
             this.typePrice = 5;
             this.timeLimit = 23;
             this.firstClass = true;
           break;
           case "MASTER":
+            this.ticketType = ticketType;
             this.typePrice = 0;
             this.timeLimit = 0;
             this.firstClass = true;
