@@ -3,11 +3,19 @@ package com.group_22235.booking;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import com.group_22235.services_management.Station;
 
-public class TicketTest {
+@SpringBootTest
+class TicketTest {
 
-	public static void main(String[] args) {
+	// @Autowired
+    // private TicketService tService;
+	@Test
+	void should_test_something(){
 
 		LocalTime l = LocalTime.now();
 		LocalDate d = LocalDate.now();
@@ -25,6 +33,8 @@ public class TicketTest {
 			System.out.println(a.getFirstClass());
 			System.out.println(a.getDate());
 			System.out.println(a.getTime());
+
+			// tService.save(a);
 			
 	}
 
