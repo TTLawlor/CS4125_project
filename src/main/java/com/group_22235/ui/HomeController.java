@@ -1,12 +1,57 @@
 package com.group_22235.ui;
 
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
-// import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.group_22235.user.UserService;
+import com.group_22235.user.UserDto;
+import com.group_22235.user.User;
+
+
 
 @Controller
 public class HomeController {
+    private UserService userService;
+
+    public HomeController(UserService userService) {
+        this.userService = userService;
+    }
+
+    // handler method to handle user registration form request
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model){
+        // create model object to store form data
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
+        return "register";
+    }
+
+    // handler method to handle user registration form submit request
+    @PostMapping("/register/save")
+    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
+                               BindingResult result,
+                               Model model){
+        User existingUser = userService.findUserByEmail(userDto.getEmail());
+
+        if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
+            result.rejectValue("email", null,
+                    "There is already an account registered with the same email");
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("user", userDto);
+            return "/register";
+        }
+
+        userService.saveUser(userDto);
+        return "redirect:/register?success";
+    }
+
     @GetMapping("/BookTicket")
     public String bookTicket() {
         return "BookTicket";
@@ -17,24 +62,14 @@ public class HomeController {
         return "Index";
     }
 
-    @GetMapping("/SignUp")
-    public String signUp() {
-        return "SignUp";
+    @GetMapping("/IndexUser")
+    public String indexUser() {
+        return "IndexUser";
     }
 
     @GetMapping("/Admin")
     public String admin() {
         return "Admin";
-    }
-
-    @GetMapping("/UserTest")
-    public String userTest() {
-        return ("<h1>Welcome UserTest</h1>");
-    }
-
-    @GetMapping("/AdminTest")
-    public String adminTest() {
-        return ("<h1>Welcome AdminTest</h1>");
     }
 
     @GetMapping("/LoginTest")
