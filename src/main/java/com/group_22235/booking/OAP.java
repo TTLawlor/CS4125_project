@@ -1,23 +1,19 @@
 package com.group_22235.booking;
 
-public class OAP extends AssignPassengerType {
+import com.group_22235.services_management.Station;
+
+public class OAP extends Ticket{
     
-    private double additionalFee = 2.50;
 
-    public OAP(ITicketPrice t){
-        super(t);
+    public OAP(Station depStation, Station arrStation, String passType, String time, int day, int month, int year,
+            String ticketType) {
+        super(depStation, arrStation, passType, time, day, month, year, ticketType);
     }
 
-    public double getTimeLimit() {
-        return 0;
-    }
-
-    public double calcTicketPrice() {
-        return super.calcTicketPrice() + additionalFee;
-    }
-
-    public Boolean getFirstClass() {
-        return false;
-    }
+    @Override
+    public void setTicketPrice(double price){
+          price = 2.50 ;
+        }
+  
 
 }

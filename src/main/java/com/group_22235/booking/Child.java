@@ -1,23 +1,20 @@
 package com.group_22235.booking;
 
-public class Child extends AssignPassengerType {
+import com.group_22235.services_management.Station;
+
+public class Child extends Ticket{
     
-    private double additionalFee = 0;
 
-    public Child(ITicketPrice t){
-        super(t);
+    public Child(Station depStation, Station arrStation, String passType, String time, int day, int month, int year,
+            String ticketType) {
+        super(depStation, arrStation, passType, time, day, month, year, ticketType);
+
     }
 
-    public double getTimeLimit() {
-        return 0;
-    }
-
-    public double calcTicketPrice() {
-        return super.calcTicketPrice() + additionalFee;
-    }
-
-    public Boolean getFirstClass() {
-        return false;
-    }
+    @Override
+    public void setTicketPrice(double price){
+          price = 0;
+        }
+  
 
 }

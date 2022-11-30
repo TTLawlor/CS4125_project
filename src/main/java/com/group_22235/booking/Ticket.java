@@ -6,24 +6,24 @@ import java.time.format.FormatStyle;
 
 import com.group_22235.services_management.Station;
 
-public class Ticket implements ITicketPrice {
+public abstract class Ticket  {
 
     private Station depStation, arrStation; // Will need changing to Station obj
-    private String passType, date;
+    private String ticketType, date; 
     protected double price, timeLimit;
+    
     protected Boolean firstClass;
 
 
     public Ticket(Station depStation, Station arrStation, String passType, String time,
-     int day, int month, int year) {
+     int day, int month, int year, String ticketType) {
         this.depStation = depStation;
         this.arrStation = arrStation;
-        this.passType = passType;
 
         LocalDate d = LocalDate.of(day, month, year);
-
         this.date = d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
         
+        setTicketType(ticketType);
     }
 
     public void setDepStation(Station depStation){
@@ -42,13 +42,13 @@ public class Ticket implements ITicketPrice {
         return arrStation;
     }
 
-    public void setPassType(String passType){
-        this.passType = passType;
-    }
+    // public void setPassType(String passType){
+    //     this.passType = passType;
+    // }
 
-    public String getPassType(){
-        return passType;
-    }
+    // public String getPassType(){
+    //     return passType;
+    // }
 
     public String getDate() {
         return date;
@@ -58,10 +58,44 @@ public class Ticket implements ITicketPrice {
         this.date = date;
     }
 
-    public double calcTicketPrice(){
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        
+    switch(ticketType) {
+        case "SEMI":
+            this.price = 0;
+            this.timeLimit = 1;
+            this.firstClass = false;
+          break;
+        case "FLEX":
+            this.price = 2;
+            this.timeLimit = 24;
+            this.firstClass = false;
+          break;
+        case "FIRST":
+            this.price = 5;
+            this.timeLimit = 23;
+            this.firstClass = true;
+          break;
+          case "MASTER":
+            this.price = 0;
+            this.timeLimit = 0;
+            this.firstClass = true;
+          break;
+      }
+    }
+
+    public double getTicketPrice(){
         return price;
     }
     
+    public void setTicketPrice(double price){
+        this.price = price;
+    }
+
     public double getTimeLimit() {
         return timeLimit;
     }
