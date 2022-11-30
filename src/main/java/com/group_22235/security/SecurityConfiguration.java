@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,17 +26,17 @@ public class SecurityConfiguration {
          http
             .authorizeRequests()
                 .antMatchers("/Admin").hasRole("ADMIN")
-                .antMatchers("/BookTicket").hasAnyRole("ADMIN", "USER")
+                // .antMatchers("/BookTicket").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 // .userDetailsService()             
                 .and()
             .formLogin()
-                .loginPage("/LoginTest")
+                .loginPage("/Index")
                 .permitAll()
                 .and()
             .logout(logout -> logout
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Must be used as due to CSRF protection being enables by default, cannot logout with post request
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/Index")
 			);
             // .userDetailsService(userDetailsService);
         return http.build();
@@ -43,6 +44,6 @@ public class SecurityConfiguration {
     
     @Bean
     public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }

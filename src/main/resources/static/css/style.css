@@ -4,11 +4,10 @@
 }
 
 .main{
+  position: relative;
   width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(1.jpg);
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%);
+  min-height: 100vh;
 }
 
 .navbar{
@@ -422,4 +421,12 @@ button:hover{
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display: block;
+}
+
+.signup {
+  font-family: 'Times New Roman';
+  font-size: 50px;
+  padding-left: 50px;
+  margin-top: 9%;
+  letter-spacing: 2px;
 }
