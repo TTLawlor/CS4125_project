@@ -36,9 +36,10 @@
             <tr>
                 <label class="form-label">Select Train</label>
                 <td>
-                    <select id="listTrain" class="form-control">
-                        <!-- <option th:each="train : ${listTrain}" th:value="${train.train_id}" th:text="${train.train_id}">
-                        </option> -->
+                    <select id="trainDropDown" class="form-control">
+                        <option value="0">select option</option>
+                        <option th:each="train : ${listTrain}" th:value="${train.getId()}" th:text="${train.getId()}"></option>
+                        </option>
                      </select>  
                      <!-- <select name='lists'>  
                          <c:forEach var="list" items="${listTrain}">
