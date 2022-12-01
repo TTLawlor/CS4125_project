@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.group_22235.user.User;
 import com.group_22235.user.UserRepository;
-// import java.util.Arrays;
-// import java.util.List;
-// import java.util.stream.Collectors;
 
 @Service
 public class SecurityUserDetailsService implements UserDetailsService{
@@ -23,12 +20,12 @@ public class SecurityUserDetailsService implements UserDetailsService{
     // Looks up the user using JPA
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);    // Try to find the email in the db using userRepo
+        Optional<User> user = userRepository.findByEmail(email);    // Try to find the email in the db using userRepo
         if(user == null){
             throw new UsernameNotFoundException("Email not found: " + email);
         }
         // If found, maps the user details to type SecurityUserDetails. Can't just throw back type User, since requires UserDetails 
         // type return, so we convert it
-        return new SecurityUserDetails(user); 
-    }   
+        return user.map(SecurityUserDetails::new).get();
+    } 
 }
