@@ -178,6 +178,8 @@ public class TicketFacade extends ABaseEntity{
             this.timeLimit = 0;
             this.firstClass = true;
           break;
+          default:
+          throw new IllegalArgumentException("Invalid Ticket Type Given");
       }
     }
 
