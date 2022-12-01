@@ -18,6 +18,9 @@ import com.group_22235.payment.Subscription;
 import com.group_22235.staff.IObserverService;
 import com.group_22235.staff.StrikeReport;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Entity
 @Table(name = "PASSENGER")
 // @AttributeOverride(name = "user_id", column = @Column(name = "member_id"))

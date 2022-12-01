@@ -24,7 +24,7 @@ public class SecurityUserDetails implements UserDetails{
         return user.getName();
     }
 
-    // Splits up multiple roles if listed. I.e, memeber has ROLE_GUEST and ROLE_MEMBER
+    // Splits up multiple roles if listed. I.e, member has ROLE_GUEST and ROLE_MEMBER
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user

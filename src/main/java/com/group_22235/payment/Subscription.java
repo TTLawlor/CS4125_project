@@ -10,6 +10,9 @@ import javax.persistence.Table;
 
 import com.group_22235.generics.ABaseEntity;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Entity
 @Table(name = "SUBSCRIPTION")
 @AttributeOverride(name = "id", column = @Column(name = "subscription_id"))
