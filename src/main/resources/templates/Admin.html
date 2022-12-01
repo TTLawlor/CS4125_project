@@ -33,14 +33,20 @@
         <div class="content">
             <h1>Train Information</h1>
             <br>
-
-            <label class="text-white">Select Train</label>
-            <select class="bg-white text-black">
-                <option>Member</option>
-                <option>Guest</option>
-            </select>
-            
-            
+            <tr>
+                <label class="form-label">Select Train</label>
+                <td>
+                    <select id="listTrain" class="form-control">
+                        <!-- <option th:each="train : ${listTrain}" th:value="${train.train_id}" th:text="${train.train_id}">
+                        </option> -->
+                     </select>  
+                     <!-- <select name='lists'>  
+                         <c:forEach var="list" items="${listTrain}">
+                            <option id="${list.key}" value="${list.value.getName()}">${list.value.getName()}</option>   
+                        </c:forEach>
+                     </select> -->
+                </td>
+            </tr>
         </div>
     </div>
 </body>

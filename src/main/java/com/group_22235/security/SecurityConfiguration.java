@@ -17,18 +17,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    //@Autowired
-    //UserDetailsService userDetailsService;
+    @Autowired
+    UserDetailsService userDetailsService;
     // SecurityUserDetailsService securityUserDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
          http
             .authorizeRequests()
-                .antMatchers("/Admin").hasRole("ADMIN")
+                //.antMatchers("/Admin").hasRole("ADMIN")
                 // .antMatchers("/BookTicket").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
-                // .userDetailsService()             
                 .and()
             .formLogin()
                 .loginPage("/Index")
@@ -38,7 +37,6 @@ public class SecurityConfiguration {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Must be used as due to CSRF protection being enables by default, cannot logout with post request
                 .logoutSuccessUrl("/Index")
 			);
-            // .userDetailsService(userDetailsService);
         return http.build();
     }
     
