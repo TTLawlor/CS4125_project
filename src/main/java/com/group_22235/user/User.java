@@ -9,10 +9,13 @@ import javax.persistence.Table;
 
 import com.group_22235.generics.ABaseEntity;
 
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "USER")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
+@NoArgsConstructor
 public class User extends ABaseEntity {
     @Column(name = "name")
     private String name;
@@ -25,9 +28,7 @@ public class User extends ABaseEntity {
 
     @Column(name = "roles")
     private String roles;
-
-    public User() {}
-
+    
     public User(String name, String email, String password, String roles) {
         this.name = name;
         this.email = email;

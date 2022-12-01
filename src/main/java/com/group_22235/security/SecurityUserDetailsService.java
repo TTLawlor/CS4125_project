@@ -20,6 +20,7 @@ public class SecurityUserDetailsService implements UserDetailsService{
     @Autowired
     UserRepository userRepository;
 
+    // Looks up the user using JPA
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);    // Try to find the email in the db using userRepo
