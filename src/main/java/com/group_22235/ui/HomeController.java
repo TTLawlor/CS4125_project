@@ -1,26 +1,41 @@
 package com.group_22235.ui;
 
+import java.util.List;
+
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.group_22235.user.UserService;
 import com.group_22235.user.UserDto;
 import com.group_22235.user.User;
+import com.group_22235.generics.ABaseServiceImpl;
+import com.group_22235.services_management.Train;
+import com.group_22235.services_management.TrainController;
+import com.group_22235.services_management.TrainService;
+
 
 
 
 @Controller
 public class HomeController {
+    @Autowired
     private UserService userService;
+    @Autowired
+    private TrainService trainService;
+    @Autowired
+    private TrainController trainController;
 
-    public HomeController(UserService userService) {
-        this.userService = userService;
-    }
 
     // handler method to handle user registration form request
     @GetMapping("/register")
@@ -67,10 +82,28 @@ public class HomeController {
         return "IndexUser";
     }
 
+    // @GetMapping("/Admin")
+    // public String admin() {
+    //     return "Admin";
+    // }
+
     @GetMapping("/Admin")
-    public String admin() {
+    public String add(Model model) throws Exception {
+        System.out.println("TESTINGGG");
+        model.addAttribute("listTrain", trainService.findAll());
+        // model.addAttribute("train", new Train());
         return "Admin";
     }
+
+    // @ModelAttribute("listTrain")
+
+    // @RequestMapping("/edit/{trainid}")
+    // public ModelAndView showEditTrainPage(@PathVariable(name="id") int id) {
+    //     ModelAndView mav = new ModelAndView("new");
+    //     TrainController trainID = trainController.getByID(id);
+    //     mav.addObject("train", trainID);
+    //     return mav;
+    // }
 
     @GetMapping("/LoginTest")
     public String loginTest() {
