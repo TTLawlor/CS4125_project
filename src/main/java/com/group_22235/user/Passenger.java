@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.group_22235.booking.Ticket;
+import com.group_22235.booking.TicketFacade;
 import com.group_22235.payment.IPaymentStrategy;
 import com.group_22235.payment.Subscription;
 import com.group_22235.staff.IObserverService;
@@ -25,7 +25,7 @@ public class Passenger extends User implements IObserverService{
     //@OneToOne(cascade = CascadeType.ALL)
     //@Column
     @Transient
-    private List<Ticket> tickets;
+    private List<TicketFacade> tickets;
 
     @Column(name = "travel_points")
     int travelPoints;  
@@ -68,15 +68,15 @@ public class Passenger extends User implements IObserverService{
     //     tickets.add(newTicket);
     // }
 
-    public Ticket viewTicket(Ticket t){
+    public TicketFacade viewTicket(TicketFacade t){
         return t;
     }
 
-    public List<Ticket> viewAllTickets(){
+    public List<TicketFacade> viewAllTickets(){
         return tickets;
     }
 
-    public void amendTicket(Ticket t){
+    public void amendTicket(TicketFacade t){
 
     }
 
