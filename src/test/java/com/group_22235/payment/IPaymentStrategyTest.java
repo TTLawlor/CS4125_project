@@ -24,13 +24,12 @@ public class IPaymentStrategyTest {
         IPaymentStrategy paymentStrategy = payment;
         Passenger member = new Passenger(cardName, "johndoe@gmail.com", "password", 3);
 
-        member.pay(paymentStrategy, "SUBSCRIPTION");
-
-        Date current = new Date();
+        Date current = member.getSubscription().getRenewalDate();
         Calendar cal = Calendar.getInstance();
         cal.setTime(current);
-        cal.add(Calendar.MONTH, 6);
+        cal.add(Calendar.MONTH, 3);
         current = cal.getTime();
+        member.pay(paymentStrategy, "SUBSCRIPTION");
 
         assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 
