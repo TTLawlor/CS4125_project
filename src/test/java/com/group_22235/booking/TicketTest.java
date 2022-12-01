@@ -2,13 +2,10 @@ package com.group_22235.booking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Executable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.junit.jupiter.api.Test;
 
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +36,14 @@ class TicketTest {
 			a.setYAPrice();
 			a.getYAPrice();
 			a.getTimeLimit();
-			a.getFirstClass();
 			a.getDate();
 			a.getTime();
 
 
+			int tl = 23;
 			Double exp = 7.5;
 
-			assertEquals(exp, a.getYAPrice()); 
+			assertEquals(tl, a.getTimeLimit()); 
 			assertEquals(exp, a.getYAPrice());
 			// tService.save(a);
 			
@@ -61,6 +58,9 @@ class TicketTest {
 		b.getArrStation();
 		b.setChildPrice();
 		b.getChildPrice();
+
+		double exp = 2;
+		assertEquals(exp, b.getChildPrice());
 	}
 
 	@Test
@@ -89,7 +89,7 @@ class TicketTest {
 	}
 
 	@Test
-	public void test_ticket_type_throws_exceeption() {
+	void should_throw_exceeption() {
           
     assertThrows(IllegalArgumentException.class, () -> {
         TicketFacade e = new TicketFacade(s, s2, l, d, "invalid");
