@@ -36,19 +36,16 @@
             <tr>
                 <label for="trainDropDown">Select Train</label>
                 <form th:action="@{/Admin/selectTrainID}" th:object="${train}" method="post" role="form">
-                    <select onchange="this.form.submit()" 
-                            class="form-control" 
-                            id="trainDropDown" 
-                            name="trainDropDownMenu"
-                            
-                            >                            
+                    <input list="trainDropDown" id="train" name="train"  />
+                    <datalist id="trainDropDown">
                         <option value="0">select option</option>
                         <option th:each="train : ${listTrain}" 
-                                th:value="${train.getId()}" 
                                 th:text="${train.getId()}"
+                                th:value="${train.getId()}"
                                 >
                         </option>
-                    </select>
+                    </datalist>
+                    <input type="submit" value="Submit">
                 </form>
                 <br>
                 <table>
@@ -59,10 +56,10 @@
                         <th>Assigned Route   </th>
                     </tr>
                     <tr>
-                        <td th:each="route : ${listRoute}" th:field="${train}" th:value="${train.getId()}" th:text="${train.getId()}"></td>
-                        <td>Screaming and crying</td>
-                        <td>Screaming and crying</td>
+                    <tr th:each = "route : ${listRoute}">
+                        <td th:text = "${route.toString()}"></td>
                     </tr>
+
                     <tr>
                         <td>testing</td>
                         <td>Screaming and crying</td>
