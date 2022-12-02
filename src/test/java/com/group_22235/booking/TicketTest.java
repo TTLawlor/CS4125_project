@@ -21,6 +21,7 @@ class TicketTest {
     // private TickebtService tService;
 
 	LocalTime l = LocalTime.of(10,30);
+	LocalTime z = LocalTime.of(12,30);
 	LocalDate d = LocalDate.of(2022,11,11);
 
 	Station s = new Station("Letterkenny Town", "Letterkenny");
@@ -29,7 +30,7 @@ class TicketTest {
 	@Test
 	void should_generate_young_adult_first_class(){
 
-			TicketFacade a = new TicketFacade(s, s2, l, d, "FIRST");
+			TicketFacade a = new TicketFacade(s, s2, l, z, d, "FIRST");
 		
 			//(s.getLocation() + "-> " + s2.getLocation();
 			a.getTicketPrice();
@@ -37,7 +38,7 @@ class TicketTest {
 			a.getYAPrice();
 			a.getTimeLimit();
 			a.getDate();
-			a.getTime();
+			a.getDepTime();
 
 
 			int tl = 23;
@@ -52,7 +53,7 @@ class TicketTest {
 	@Test
 	void should_generate_child_flexible(){
 
-		TicketFacade b = new TicketFacade(s, s2, l, d, "FLEX");
+		TicketFacade b = new TicketFacade(s, s2, l, z, d, "FLEX");
 
 		b.getDepStation();
 		b.getArrStation();
@@ -66,7 +67,7 @@ class TicketTest {
 	@Test
 	void should_generate_adult_semi(){
 
-		TicketFacade c = new TicketFacade(s, s2, l, d, "SEMI");
+		TicketFacade c = new TicketFacade(s, s2, l, z, d, "SEMI");
 
 		c.setAdultPrice();
 		c.getAdultPrice();
@@ -79,7 +80,7 @@ class TicketTest {
 	@Test
 	void should_generate_oap_first_class(){
 
-		TicketFacade dd = new TicketFacade(s, s2, l, d, "FIRST");
+		TicketFacade dd = new TicketFacade(s, s2, l, z, d, "FIRST");
 
 		dd.setOAPPrice();
 		dd.getOAPPrice();
@@ -91,17 +92,16 @@ class TicketTest {
 	@Test
 	void should_generate_master_ticket(){
 
-		TicketFacade f = new TicketFacade(s, s2, l, d, "FIRST");
+		TicketFacade f = new TicketFacade(s, s2, l, z, d, "FIRST");
 
 		assertEquals(0, f.getTimeLimit());
-		assertEquals(true, f.getFirstClass());
 	}
 
 	@Test
 	void should_throw_exceeption() {
           
     assertThrows(IllegalArgumentException.class, () -> {
-        TicketFacade e = new TicketFacade(s, s2, l, d, "invalid");
+        TicketFacade e = new TicketFacade(s, s2, l, z, d, "invalid");
         e.setTicketType("invalid");
     });
 }
