@@ -14,14 +14,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group_22235.user.UserService;
 import com.group_22235.user.UserDto;
 import com.group_22235.user.User;
 import com.group_22235.generics.ABaseServiceImpl;
+import com.group_22235.services_management.RouteTimetableService;
 import com.group_22235.services_management.Train;
 import com.group_22235.services_management.TrainController;
+import com.group_22235.services_management.TrainDto;
 import com.group_22235.services_management.TrainService;
 
 
@@ -34,7 +37,7 @@ public class HomeController {
     @Autowired
     private TrainService trainService;
     @Autowired
-    private TrainController trainController;
+    private RouteTimetableService routeService;
 
 
     // handler method to handle user registration form request
@@ -88,12 +91,26 @@ public class HomeController {
     // }
 
     @GetMapping("/Admin")
-    public String add(Model model) throws Exception {
-        System.out.println("TESTINGGG");
+    public String add(Model model) {
+        TrainDto train = new TrainDto();
         model.addAttribute("listTrain", trainService.findAll());
-        // model.addAttribute("train", new Train());
+        model.addAttribute("train", train);
         return "Admin";
     }
+
+    @PostMapping(value="/Admin/selectTrainID")
+    public String routeByTrain(@Valid @ModelAttribute("train") Train train, BindingResult result, Model model) {
+        System.out.println("train.id " + train.getId());
+        //model.addAttribute("listRoute", routeService.findAllByTrainID(train.getId()));
+        return "redirect:/Admin/selectTrainID";
+    }
+
+    // @PostMapping(value="/Admin/selectTrainID")  
+    // public String routeByTrain(Train train) {
+    //     System.out.println("train.id " + train.getId());
+    //     //model.addAttribute("listRoute", routeService.findAllByTrainID(train.getId()));
+    //     return "Admin";
+    // }
 
     // @ModelAttribute("listTrain")
 
