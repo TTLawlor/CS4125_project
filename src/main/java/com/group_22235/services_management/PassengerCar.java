@@ -27,6 +27,12 @@ public class PassengerCar extends ACarriage{
     @Transient
     String freq = "Multiple times a day";
 
+    public void setTotalSeats(){
+        for (int i = 0; i < 40; i++){
+            seats.add(true);
+        }
+    }
+
     public void setSeatStatus(int seatNum, Boolean occupied) {
         this.seatNum = seatNum;
         // -1 offset as no 0 seat like in arraylist

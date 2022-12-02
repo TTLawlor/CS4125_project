@@ -29,9 +29,30 @@ public class IPaymentStrategyTest {
         cal.setTime(current);
         cal.add(Calendar.MONTH, 3);
         current = cal.getTime();
-        member.pay(paymentStrategy, "SUBSCRIPTION");
+        member.getSubscription().paySubscription(paymentStrategy);
 
         assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 
     }
+
+    @Test
+    void should_pay_by_paypal() {
+        String cardName = "John Doe";
+        String email = "johndoe@gmail.com";
+        String password = "password";
+        APayment payment = new PaypalStrategy(email, password);
+        IPaymentStrategy paymentStrategy = payment;
+        Passenger member = new Passenger(cardName, "johndoe@gmail.com", "password", 3);
+
+        Date current = member.getSubscription().getRenewalDate();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(current);
+        cal.add(Calendar.MONTH, 3);
+        current = cal.getTime();
+        member.getSubscription().paySubscription(paymentStrategy);
+
+        assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
+
+    }
+
 }

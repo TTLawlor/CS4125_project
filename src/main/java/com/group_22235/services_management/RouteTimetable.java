@@ -10,16 +10,19 @@ import java.util.Map.Entry;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.group_22235.generics.ABaseEntity;
+import com.group_22235.staff.StrikeReport;
 
 @Entity
 @Table(name = "TIMETABLE")
@@ -33,6 +36,10 @@ public class RouteTimetable extends ABaseEntity {
     @MapKeyJoinColumn(name="STATION_ID")
     @Column(name="LocalTime")
     private Map<Station, LocalTime> timetable = new LinkedHashMap<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "strike_report_id")
+    private StrikeReport strikeReport;
 
     // Constructor takes in list of stations and times, creating a timetable for a route
     public RouteTimetable(ArrayList<Station> stations, ArrayList<LocalTime> times) throws IllegalArgumentException {

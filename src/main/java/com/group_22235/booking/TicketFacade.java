@@ -43,7 +43,10 @@ public class TicketFacade extends ABaseEntity{
     private LocalDate date; 
     
     @Column
-    private LocalTime time;
+    private LocalTime depTime;
+
+    @Column
+    private LocalTime arrTime;
 
     @Column
     protected double price, timeLimit;
@@ -51,13 +54,14 @@ public class TicketFacade extends ABaseEntity{
     @Transient
     protected double typePrice;
 
-    public TicketFacade(Station depStation, Station arrStation, LocalTime time, LocalDate date,
+    public TicketFacade(Station depStation, Station arrStation, LocalTime depTime, LocalTime arrTime, LocalDate date,
     String ticketType){
 
         this.depStation = depStation;
         this.arrStation = arrStation;
 
-        this.time = time;
+        this.depTime = depTime;
+        this.arrTime = arrTime;
 
         this.date = date;
         
@@ -130,12 +134,20 @@ public class TicketFacade extends ABaseEntity{
         return arrStation;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getDepTime() {
+        return depTime;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setDepTime(LocalTime depTime) {
+        this.depTime = depTime;
+    }
+
+    public LocalTime getArrTime() {
+        return arrTime;
+    }
+
+    public void setArrTime(LocalTime arrTime) {
+        this.arrTime = arrTime;
     }
 
     public LocalDate getDate() {
@@ -173,6 +185,8 @@ public class TicketFacade extends ABaseEntity{
             this.typePrice = 0;
             this.timeLimit = 0;
           break;
+          default:
+          throw new IllegalArgumentException("Invalid Ticket Type Given");
       }
     }
 
@@ -187,6 +201,4 @@ public class TicketFacade extends ABaseEntity{
     public double getTimeLimit() {
         return timeLimit;
     }
-    
-
 }

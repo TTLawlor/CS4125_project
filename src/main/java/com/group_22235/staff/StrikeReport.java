@@ -3,12 +3,30 @@ package com.group_22235.staff;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.group_22235.generics.ABaseEntity;
 import com.group_22235.services_management.RouteTimetable;
 
-public class StrikeReport {
+@Entity
+@Table(name = "STRIKEREPORT")
+@AttributeOverride(name = "id", column = @Column(name = "strike_report_id"))
+public class StrikeReport extends ABaseEntity {
+
+    @Column
     private LocalDate strikeDateStart;
+    @Column
     private LocalDate strikeDateEnd;
+
+    @OneToMany(mappedBy = "strikeReport", cascade=CascadeType.ALL)
     private List<RouteTimetable> affectedRoutes;
+
+    @Column
     private String reason;
 
     public StrikeReport(LocalDate strikeDateStart, LocalDate strikeDateEnd, List<RouteTimetable> affectedRoutes, String reason) {
