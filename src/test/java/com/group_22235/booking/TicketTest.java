@@ -89,6 +89,15 @@ class TicketTest {
 	}
 
 	@Test
+	void should_generate_master_ticket(){
+
+		TicketFacade f = new TicketFacade(s, s2, l, d, "FIRST");
+
+		assertEquals(0, f.getTimeLimit());
+		assertEquals(true, f.getFirstClass());
+	}
+
+	@Test
 	void should_throw_exceeption() {
           
     assertThrows(IllegalArgumentException.class, () -> {
