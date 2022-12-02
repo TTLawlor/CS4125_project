@@ -52,7 +52,7 @@
                             </div>
                     </form>  
                     <p class="link">Don't have an account<br>
-                    <a href="#">Sign up </a> here</a></p>
+                    <a th:href="@{/register}">Sign up </a> here</a></p>
                 </div>
         </div>
         
@@ -62,7 +62,9 @@
 			<h2>Become a member today!</h2>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
                     expedita atque eveniet</p> <br>
-			<button type="button">Sign Up</button>
+                    <form th:action="@{/register}">
+                        <button type="bttn">Sign Up</button>
+                    </form>
 		</div>
     </div>
 </body>
