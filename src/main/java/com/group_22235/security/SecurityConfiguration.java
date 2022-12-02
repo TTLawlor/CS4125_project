@@ -23,8 +23,9 @@ public class SecurityConfiguration {
          http
             .authorizeRequests()
                 // .antMatchers("/Admin").hasRole("ADMIN")
-                // .antMatchers("/BookTicket").hasAnyRole("ADMIN", "MEMBER")
-                .antMatchers("/").permitAll()        
+                // .antMatchers("/Index").anonymous()
+                // .antMatchers("/Index").denyAll()
+                .antMatchers("/").permitAll()    
                 .and()
             .formLogin()
                 .loginPage("/Index")
