@@ -54,4 +54,5 @@ public class IPaymentStrategyTest {
         assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 
     }
+
 }
