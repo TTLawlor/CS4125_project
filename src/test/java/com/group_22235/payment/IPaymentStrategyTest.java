@@ -29,7 +29,7 @@ public class IPaymentStrategyTest {
         cal.setTime(current);
         cal.add(Calendar.MONTH, 3);
         current = cal.getTime();
-        member.pay(paymentStrategy, "SUBSCRIPTION");
+        member.getSubscription().paySubscription(paymentStrategy);
 
         assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 
@@ -49,7 +49,7 @@ public class IPaymentStrategyTest {
         cal.setTime(current);
         cal.add(Calendar.MONTH, 3);
         current = cal.getTime();
-        member.pay(paymentStrategy, "SUBSCRIPTION");
+        member.getSubscription().paySubscription(paymentStrategy);
 
         assertEquals(current.toString(), member.getSubscription().getRenewalDate().toString());
 

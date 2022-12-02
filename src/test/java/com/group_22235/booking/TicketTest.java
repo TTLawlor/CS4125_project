@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.cglib.core.Local;
 
 import com.group_22235.services_management.Station;
 
@@ -92,7 +92,7 @@ class TicketTest {
 	@Test
 	void should_generate_master_ticket(){
 
-		TicketFacade f = new TicketFacade(s, s2, l, z, d, "FIRST");
+		TicketFacade f = new TicketFacade(s, s2, l, z, d, "MASTER");
 
 		assertEquals(0, f.getTimeLimit());
 	}
@@ -104,5 +104,37 @@ class TicketTest {
         TicketFacade e = new TicketFacade(s, s2, l, z, d, "invalid");
         e.setTicketType("invalid");
     });
-}
+   }
+
+   @Test
+   void should_set_price(){
+
+	   TicketFacade f = new TicketFacade(s, s, z, l, d, "FLEX");
+	   f.setTicketPrice(3);
+
+	   assertEquals(3, f.getTicketPrice());
+   }
+
+   @Test
+   void should_set_time(){
+
+	   TicketFacade f = new TicketFacade(s, s, z, l, d, "FLEX");
+		LocalTime dep = LocalTime.of(2,30);
+		LocalTime arr = LocalTime.of(5,30);
+	    f.setDepTime(dep);
+		f.setArrTime(arr);
+
+		assertEquals(dep, f.getDepTime());
+	    assertEquals(arr, f.getArrTime());
+   }
+
+   @Test
+   void should_set_date(){
+
+	   TicketFacade f = new TicketFacade(s, s, z, l, d, "FLEX");
+	   LocalDate date = LocalDate.of(2022,12,25);
+	   f.setDate(date);
+
+	   assertEquals("25/12/2022", f.getDate());
+   }
 }
