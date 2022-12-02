@@ -30,7 +30,6 @@ class TicketTest {
 			a.setYAPrice();
 			System.out.println("Adult price + price: " + a.getYAPrice());
 			System.out.println(a.getTimeLimit());
-			System.out.println(a.getFirstClass());
 			System.out.println(a.getDate());
 			System.out.println(a.getTime());
 

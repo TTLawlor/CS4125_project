@@ -23,5 +23,9 @@ public class RouteTimetableService extends ABaseServiceImpl<RouteTimetable, Long
     public List<RouteTimetable> findAllByTrainID(Long trainId) {
         return rRepository.findAllByTrainID(trainId);
     }
+
+    public List<RouteTimetable> findByStationIDs(Long st1_id, Long st2_id) {
+        return rRepository.findByStationIDs(st1_id, st2_id);
+    }
     
 }

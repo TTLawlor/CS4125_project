@@ -2,8 +2,6 @@ package com.group_22235.booking;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -39,16 +37,19 @@ public class TicketFacade extends ABaseEntity{
     private Station depStation;
 
     @Column
-    private String ticketType, date; 
+    private String ticketType; 
+    
+    @Column
+    private LocalDate date; 
     
     @Column
     private LocalTime time;
 
     @Column
-    protected double typePrice, price, timeLimit;
+    protected double price, timeLimit;
 
-    @Column
-    protected Boolean firstClass;
+    @Transient
+    protected double typePrice;
 
     public TicketFacade(Station depStation, Station arrStation, LocalTime time, LocalDate date,
     String ticketType){
@@ -58,10 +59,17 @@ public class TicketFacade extends ABaseEntity{
 
         this.time = time;
 
-        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        this.date = date;
         
         setTicketType(ticketType);
 
+        adult = new Adult();
+        child = new Child();
+        oap = new OAP();
+        youngAdult = new YoungAdult();
+    }
+
+    public TicketFacade() {
         adult = new Adult();
         child = new Child();
         oap = new OAP();
@@ -130,11 +138,11 @@ public class TicketFacade extends ABaseEntity{
         this.time = time;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -149,25 +157,21 @@ public class TicketFacade extends ABaseEntity{
             this.ticketType = ticketType;
             this.typePrice = 0;
             this.timeLimit = 1;
-            this.firstClass = false;
           break;
         case "FLEX":
             this.ticketType = ticketType;
             this.typePrice = 2;
             this.timeLimit = 24;
-            this.firstClass = false;
           break;
         case "FIRST":
             this.ticketType = ticketType;
             this.typePrice = 5;
             this.timeLimit = 23;
-            this.firstClass = true;
           break;
           case "MASTER":
             this.ticketType = ticketType;
             this.typePrice = 0;
             this.timeLimit = 0;
-            this.firstClass = true;
           break;
       }
     }
@@ -182,10 +186,6 @@ public class TicketFacade extends ABaseEntity{
 
     public double getTimeLimit() {
         return timeLimit;
-    }
-
-    public Boolean getFirstClass() {
-        return firstClass;
     }
     
 
