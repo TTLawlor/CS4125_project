@@ -36,51 +36,140 @@
         <!-- Main page content -->
         <div class="content">
               
-                    <h1>Book Your Ticket</h1>
-                
-                <!-- Ticket Information -->
-                <div class="">
-                    <input type="radio" class="radio" name="r">
-                    <label class="text">One Way</label>
-                    <input type="radio" class="radio" name="r">
-                    <label class="text">Return</label>
+            <h1>Book Your Ticket</h1>
+        
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                  You have successfully booked a ticket!
                 </div>
+            </div>
+
+            <form
+            method="post"
+            role="form"
+            th:action="@{/BookTicket/routes}"
+            th:object="${ticket}"
+            id="ticketForm">
+    
+                <!-- <div class="">
+                    <input type="radio" class="radio"  th:field="*{ticketReturn}" name="r">
+                    <label class="text">One Way</label>
+                    <input type="radio" class="radio" th:field="*{ticketReturn}" name="r">
+                    <label class="text">Return</label>
+                </div> -->
     
                 <div class="signup-content2">
-                    <input id="greyph" type="text" placeholder="From" class="bg-black">
-                    <input id="greyph" type="text" placeholder="To" class="bg-black"><br>
                 
-                <label class="text-white" style="margin-left:10px;">Depart</label>
-                <input type="date" class="tarikh bg-dark text-black">
-                <label class="text-white" style="margin-left:10px;">Return</label>
-                <input type="date" class="tarikh bg-dark text-black">
-                
-                <label class="text-white">Adult</label>
-                <input type="checkbox"></input>
-                
-                <label class="text-white">Student</label>
-                <input type="checkbox"></input>
+                    <div class="form-group mb-3">
+                    <label class="form-label">Select Departure Station</label>
 
-                <label class="text-white">Child</label>
-                <input type="checkbox"></input>
+                    <tr>
+                        <td>
+                            <select id="depDropDown" class="form-control" th:field="*{depStation}">
+                                <option value="0">select option</option>
+                                <option th:each="station : ${listStations}" 
+                                th:value="${station.getId()}" 
+                                th:text="${station.getLocation()}"></option>
+                                </option>
+                             </select>  
+                        </td>
+                        <p th:errors = "*{depStation}" class="text-danger"
+                           th:if="${#fields.hasErrors('depStation')}"></p>
+                    </tr>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Select Arrival Station</label>
+
+                    <tr>
+                        <td>
+                            <select id="arrDropDown" class="form-control" th:field="*{arrStation}">
+                                <option value="0">select option</option>
+                                <option th:each="station : ${listStations}" 
+                                th:value="${station.getId()}" 
+                                th:text="${station.getLocation()}" ></option>
+                                </option>
+                             </select>  
+                             <p th:errors = "*{arrStation}" class="text-danger"
+                           th:if="${#fields.hasErrors('arrStation')}"></p>
+                        </td>
+                    </tr>
+                    </div>
+            
+                    <label class="text-white" style="margin-left:10px;">Depart</label>
+                    <input th:field="*{date}" type="date" class="tarikh bg-dark text-black">
+                    <p th:errors = "*{date}" class="text-danger"
+                           th:if="${#fields.hasErrors('date')}"></p>
+                    <!-- <label class="text-white" style="margin-left:10px;">Return</label>
+                    <input type="date" class="tarikh bg-dark text-black"> -->
+
+                    <br>
+                    <label class="form-label">Passenger Type</label>
+                    <select id="ptypeDropDown" class="form-control" th:field="*{passType}">
+                        <option value="0">select option</option>
+                        <option th:value="ADULT">Adult</option>
+                        <option th:value="YA">Young Adult</option>
+                        <option th:value="CHILD">Child</option>
+                        <option th:value="OAP">OAP</option>
+                    </select>
 
 
-               <!-- <label class="text-white" style="margin-left:10px;">Ticket Type</label>
-                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Adults">
-                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Children">
-                <input id="greyph" type="number" min="0" class="bg-black" placeholder="Students"><br> -->
-
-                <br>
-                <label class="text-white">Travel Class</label>
-                <select class="bg-white text-black">
-                    <option>Member</option>
-                    <option>Guest</option>
-                </select>
+                    <br>
+                    <label class="form-label">Ticket Type</label>
+                    <select id="ttypeDropDown" class="form-control" th:field="*{ticketType}">
+                        <option value="0">select option</option>
+                        <option th:value="SEMI">semi-flexible</option>
+                        <option th:value="FLEX">flexible</option>
+                        <option th:value="FIRST">first class</option>
+                    </select>
+                    <p th:errors = "*{ticketType}" class="text-danger"
+                            th:if="${#fields.hasErrors('ticketType')}"></p>
                 <input type="submit" value="Check Availability" class="">
-            </div>
-        </div>
+                </div>
+            <!-- </form> -->
         
-    <!-- Footer -->
+                <div th:if="${param.empty}">
+                    <div class="alert alert-info">
+                      There are no routes for these stations
+                    </div>
+                </div>
+                <div th:if="${param.times}">
+                    <form
+                    method="post"
+                    role="form"
+                    th:action="@{/BookTicket/save}"
+                    th:object="${ticket2}"
+                    id="routesForm">
+                    <table>
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">ID</th>
+                                <th class="column-title">Departure Time</th> 
+                                <th class="column-title">Arrival Time</th> 
+                                <th class="column-title" >Choose Route</th> 
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                            <tr th:each="route : ${routes}">
+                            <td th:text="${route.getId()}"></td>
+                            <td th:text="${route.getStationTime(ticket.getDepStation())}"></td>
+                            <td th:text="${route.getStationTime(ticket.getArrStation())}"></td>
+                            <td>
+                                <div class="radio">
+                                    <label><input class="form-control" type="radio" id='routeChoice' name="routeChoice" th:value="${route}" th:field="*{route}"></label>
+                                </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <input type="submit" value="Book Ticket" th:formaction="@{/BookTicket/save}" class="">
+                </div>
+            </form>
+            </form>
+           <!-- Footer -->
+           </div>
 
     </div>
 </body>
