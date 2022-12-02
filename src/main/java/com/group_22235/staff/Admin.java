@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.group_22235.services_management.RouteTimetable;
 import com.group_22235.services_management.Train;
+import com.group_22235.user.Passenger;
 import com.group_22235.user.User;
 
 @Entity
@@ -29,16 +30,11 @@ public class Admin extends User{
 
     }
 
-    public void callStrike(Report rep) {
-        // Train t = new Train();
-        // User u = new User(getName(), getEmail(), getPassword(), getRoles());
-        // ???
+    public void callStrike(StrikeReport report, Train train, Passenger pass) {
+        StrikePublisherService str = new StrikePublisherService(report);
+        str.registerObserver(train);
+        str.registerObserver(pass);
 
-        //for all trains and users, call strike
-        // but we dont keep list of trains or users anywhere but db. what do?
-        // This is bloody straightforwrad too i think am overhtinking
-        
-
-        StrikePublisherService str = new StrikePublisherService();
+        str.notifyAllObservers();
     }
 }

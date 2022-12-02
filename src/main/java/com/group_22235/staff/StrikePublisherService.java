@@ -10,6 +10,10 @@ public class StrikePublisherService {
    // List of all classes in update list. Currently made up of Train and User
    private List<IObserverService> observers = new ArrayList<>();
    private StrikeReport rep;
+   
+   public StrikePublisherService(StrikeReport rep) {
+      this.rep = rep;
+   }
 
    public void registerObserver(IObserverService o) {
       observers.add(o);

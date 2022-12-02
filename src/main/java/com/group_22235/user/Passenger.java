@@ -63,10 +63,9 @@ public class Passenger extends User implements IObserverService{
         this.subscription = subscription;
     }
     
-// public void bookTicket(Customer info){
-    //     Ticket newTicket = new Ticket();
-    //     tickets.add(newTicket);
-    // }
+    public void bookTicket(TicketFacade t){
+        tickets.add(t);
+    }
 
     public TicketFacade viewTicket(TicketFacade t){
         return t;
@@ -86,10 +85,7 @@ public class Passenger extends User implements IObserverService{
 
     @Override
     public void update(StrikeReport rep) {
-        // Check through tickets and see if any routes affected for dates listed
-        // If so, would send an email to user, will mock by simply printing a String that would sent
-
-        //String msg = String.format("Strike Notice. Your booking for the %t from %s to %s has been cancelled. The reason is %s. We are sorry for the inconvienece caused", );
+    tickets.clear();
     }
 
     public void pay(IPaymentStrategy paymentMethod, String purchase) {
@@ -100,7 +96,7 @@ public class Passenger extends User implements IObserverService{
                 subscription.paySubscription(paymentMethod);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid paymentMethod or purchase item");
+                 throw new IllegalArgumentException("Invalid paymentMethod or purchase item");
         } 
     }
     
