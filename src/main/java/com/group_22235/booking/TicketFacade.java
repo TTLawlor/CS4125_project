@@ -39,13 +39,22 @@ public class TicketFacade extends ABaseEntity{
     private Station depStation;
 
     @Column
-    private String ticketType, date; 
+    private String ticketType; 
+
+    @Column
+    private String date;
     
     @Column
     private LocalTime time;
 
     @Column
-    protected double typePrice, price, timeLimit;
+    protected double typePrice;
+
+    @Column
+    protected double price;
+
+    @Column
+    protected double timeLimit;
 
     @Column
     protected Boolean firstClass;
@@ -169,6 +178,8 @@ public class TicketFacade extends ABaseEntity{
             this.timeLimit = 0;
             this.firstClass = true;
           break;
+          default:
+          throw new IllegalArgumentException("Invalid Ticket Type Given");
       }
     }
 
