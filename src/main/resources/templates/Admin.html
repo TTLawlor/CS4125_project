@@ -14,6 +14,7 @@
                 <h2 class="logo">Hibernian Rail</h2>
             </div>
 
+            <!-- Navbar -->
             <div class="menu">
                 <ul>
                     <li><a th:href="@{/Index}">HOME</a></li>
@@ -24,15 +25,18 @@
                 </ul>
             </div>
 
+            <!-- Search Bar - does not function properly, it is purely for aesthetic reasons -->
             <div class="search">
                 <input id="greyph" class="srch" type="search" name="" placeholder="Search">
                 <a href="#"> <button class="btn">Search</button></a>
             </div>  
         </div>
 
+        <!-- Main page content -->
         <div class="content">
             <h1>Train Information</h1>
             <br>
+            <!-- Train Selection -->
             <tr>
                 <label for="trainDropDown">Select Train</label>
                 <form th:action="@{/Admin/selectTrainID}" th:object="${train}" method="post" role="form">
@@ -48,6 +52,7 @@
                     <input type="submit" value="Submit">
                 </form>
                 <br>
+                <!-- Table for selected train information -->
                 <table>
                     <caption><h2>Train</h2></caption>
                     <tr>

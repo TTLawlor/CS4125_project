@@ -7,7 +7,6 @@
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Hibernian Rail</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
-
 </head> 
 <body>
     <div class="main">
@@ -16,6 +15,7 @@
                 <h2 class="logo">Hibernian Rail</h2>
             </div>
 
+            <!-- Navbar -->
             <div class="menu">
                 <ul>
                     <li><a th:href="@{/Index}">HOME</a></li>
@@ -26,17 +26,19 @@
                 </ul>
             </div>
 
+            <!-- Search Bar - does not function properly, it is purely for aesthetic reasons -->
             <div class="search">
                 <input id="greyph" class="srch" type="search" name="" placeholder="Search">
                 <a href="#"> <button class="btn">Search</button></a>
             </div>
-
         </div> 
+
+        <!-- Main page content -->
         <div class="content">
               
                     <h1>Book Your Ticket</h1>
                 
-    
+                <!-- Ticket Information -->
                 <div class="">
                     <input type="radio" class="radio" name="r">
                     <label class="text">One Way</label>
@@ -76,7 +78,7 @@
                 </select>
                 <input type="submit" value="Check Availability" class="">
             </div>
-                </div>
+        </div>
         
     <!-- Footer -->
 
