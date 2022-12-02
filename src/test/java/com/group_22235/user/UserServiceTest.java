@@ -26,21 +26,6 @@ public class UserServiceTest {
 
     @Test
     void testFindUserByEmail() {
-        assertEquals("badmintest@gmail.com", userService.findUserByEmail("badmintest@gmail.com").getEmail());
-    }
-
-    @Test
-    void testSaveUser() {
-        //userService = new UserService(null, null);
-        UserDto userDto = new UserDto(2, "John", "usertest@gmail.com", "testing");
-        assertNotNull(userService);
-
-        //User user = new User("Tomo", "youbo@gmail.com", "test", "ROLE_ADMIN");
-        //userService.save(user);
-        userService.saveUser(userDto);
-
-
-        
-        assertNotNull(userService.findUserByEmail(userDto.getEmail()));
+        assertEquals("TestingSecurity@gmail.com", userService.findUserByEmail("TestingSecurity@gmail.com").getEmail());
     }
 }

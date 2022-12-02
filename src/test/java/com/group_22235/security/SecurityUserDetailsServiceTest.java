@@ -21,11 +21,9 @@ public class SecurityUserDetailsServiceTest {
 
     @Test
     void testLoadUserByUsername() {
-        User user = new Passenger("John", "bigtest@gmail.com", "test", 6);
-        userService.save(user);
 
-        String s = securityUserDetailsService.loadUserByUsername("bigtest@gmail.com").getUsername();
+        String s = securityUserDetailsService.loadUserByUsername("TestingSecurity@gmail.com").getUsername();
 
-        assertEquals("bigtest@gmail.com", securityUserDetailsService.loadUserByUsername("bigtest@gmail.com").getUsername());
+        assertEquals("TestingSecurity@gmail.com", securityUserDetailsService.loadUserByUsername("TestingSecurity@gmail.com").getUsername());
     }
 }
