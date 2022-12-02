@@ -1,23 +1,23 @@
-package com.group_22235.staff;
+// package com.group_22235.staff;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertNotNull;
+// import static org.junit.jupiter.api.Assertions.assertThrows;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
+// import java.time.LocalDate;
+// import java.time.LocalTime;
+// import java.util.ArrayList;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-import com.group_22235.staff.StrikeReport;
+// import com.group_22235.staff.StrikeReport;
 
-@SpringBootTest
-    class AdminTest {
-    Admin admin;
+// @SpringBootTest
+//     class AdminTest {
+//     Admin admin;
 
     // @Test
     // void should_cancel_route(){
