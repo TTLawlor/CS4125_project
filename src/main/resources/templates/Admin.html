@@ -17,7 +17,7 @@
             <!-- Navbar -->
             <div class="menu">
                 <ul>
-                    <li><a th:href="@{/Index}">HOME</a></li>
+                    <li><a th:href="@{/IndexUser}">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
                     <li><a href="#">STRIKES</a></li>
                     <li><a th:href="@{/BookTicket}">BOOKINGS</a></li>
@@ -40,16 +40,16 @@
             <tr>
                 <label for="trainDropDown">Select Train</label>
                 <form th:action="@{/Admin/selectTrainID}" th:object="${train}" method="post" role="form">
-                    <select onchange="this.form.submit()" 
-                            class="dropbtn" 
-                            id="trainDropDown" 
-                            name="trainDropDownMenu">                            
+                    <input list="trainDropDown" id="train" name="train"  />
+                    <datalist id="trainDropDown">
                         <option value="0">select option</option>
                         <option th:each="train : ${listTrain}" 
-                                th:value="${train.getId()}" 
-                                th:text="${train.getId()}">
+                                th:text="${train.getId()}"
+                                th:value="${train.getId()}"
+                                >
                         </option>
-                    </select>
+                    </datalist>
+                    <input type="submit" value="Submit">
                 </form>
                 <br>
                 <!-- Table for selected train information -->
@@ -61,19 +61,19 @@
                         <th>Assigned Route   </th>
                     </tr>
                     <tr>
-                        <td th:each="route : ${listRoute}" th:field="${train}" th:value="${train.getId()}" th:text="${train.getId()}"></td>
-                        <td>Screaming and crying</td>
-                        <td>Screaming and crying</td>
+                    <tr th:each = "route : ${listRoute}">
+                        <td th:text = "${route.toString()}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>testing</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>testing</td>
-                        <td>Screaming and crying</td>
-                        <td>Screaming and crying</td>
-                    </tr>
-                    <tr>
-                        <td>testing</td>
-                        <td>Screaming and crying</td>
-                        <td>Screaming and crying</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                   </table>
             </tr>

@@ -22,10 +22,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
          http
             .authorizeRequests()
-                // .antMatchers("/Admin").hasRole("ADMIN")
-                // .antMatchers("/Index").anonymous()
-                // .antMatchers("/Index").denyAll()
-                .antMatchers("/").permitAll()    
+                .antMatchers("/Admin").hasRole("ADMIN")
+                .antMatchers("/IndexUser").hasAnyRole("ADMIN", "MEMBER", "FRONTDESK")
+                .antMatchers("/").permitAll()        
                 .and()
             .formLogin()
                 .loginPage("/Index")
