@@ -10,7 +10,7 @@ import com.group_22235.services_management.Station;
 import com.group_22235.staff.StrikeReport;
 
 @SpringBootTest
-public class FrontDeskTest {
+    class FrontDeskTest {
     
     Station station = new Station("Station 1", "Letterkenny");
 

@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.group_22235.staff.StrikeReport;
 
 @SpringBootTest
-public class AdminTest {
+    class AdminTest {
     Admin admin;
 
     // @Test

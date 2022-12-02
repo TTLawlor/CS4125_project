@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.group_22235.user.User;
 
-@SpringBootTest
-public class SecurityUserDetailsTest {
+@SpringBootTest 
+ class SecurityUserDetailsTest {
     
     User user = new User("John Joe", "johnjoe@hibrail.ie", "password", "ROLE_MEMBER");
 

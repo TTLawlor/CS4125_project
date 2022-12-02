@@ -6,12 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-
-
-
-public class ReportTest {
+    class ReportTest {
     
-
     @Test
     void should_get_reporter(){
         Report report = new Report("Joe Soap", "Saoirse Ronan", "Broken Window", "Train 6 has a broken window");
