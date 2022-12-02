@@ -153,7 +153,7 @@ public class TicketFacade extends ABaseEntity{
     }
 
     public void setDate(LocalDate date) {
-        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));;
+        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
     public String getTicketType() {
