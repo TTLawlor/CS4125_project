@@ -31,7 +31,7 @@ public class Admin extends User{
     }
 
     public void callStrike(StrikeReport report, Train train, Passenger pass) {
-        StrikePublisherService str = new StrikePublisherService(report);
+        StrikePublisher str = new StrikePublisher(report);
         str.registerObserver(train);
         str.registerObserver(pass);
 

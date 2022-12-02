@@ -45,6 +45,7 @@ public class Passenger extends User implements IObserverService{
     // Guest
     public Passenger(String name, String email) {
         super(name, email, null, "ROLE_GUEST");
+        tickets = new ArrayList<>();
     }
 
     public int getTravelPoints() {
@@ -88,16 +89,8 @@ public class Passenger extends User implements IObserverService{
     tickets.clear();
     }
 
-    public void pay(IPaymentStrategy paymentMethod, String purchase) {
-        switch (purchase) {
-            case "TICKET":
-                break;
-            case "SUBSCRIPTION":
-                subscription.paySubscription(paymentMethod);
-                break;
-            default:
-                 throw new IllegalArgumentException("Invalid paymentMethod or purchase item");
-        } 
+    public void payTicket(IPaymentStrategy paymentMethod, TicketFacade ticket) {
+        paymentMethod.pay(ticket.getTicketPrice());
     }
     
 }
