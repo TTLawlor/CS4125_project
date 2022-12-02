@@ -128,13 +128,4 @@ class TicketTest {
 	    assertEquals(arr, f.getArrTime());
    }
 
-   @Test
-   void should_set_date(){
-
-	   TicketFacade f = new TicketFacade(s, s, z, l, d, "FLEX");
-	   LocalDate date = LocalDate.of(2022,12,25);
-	   f.setDate(date);
-
-	   assertEquals("25/12/2022", f.getDate());
-   }
 }
