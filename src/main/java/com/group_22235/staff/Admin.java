@@ -21,8 +21,8 @@ public class Admin extends User{
         super(name, email, password, "ROLE_ADMIN");
     }
 
-    public void updateRouteTimetbale(RouteTimetable oldRT, RouteTimetable newRT) {
-        oldRT = newRT;
+    public void updateRouteTimetable(RouteTimetable oldRT, RouteTimetable newRT) {
+        oldRT = newRT; 
     }
 
     public void cancelRouteTimetable() {
