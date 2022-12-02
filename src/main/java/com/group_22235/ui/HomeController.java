@@ -39,13 +39,9 @@ public class HomeController {
     @Autowired
     private TrainService trainService;
     @Autowired
-    private TrainController trainController;
-    @Autowired
     private TicketService ticketService;
-
     @Autowired
     private StationService stationService;
-
     @Autowired
     private RouteTimetableService routeTimetableService;
 
