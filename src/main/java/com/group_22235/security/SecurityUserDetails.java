@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.group_22235.user.User;
 
+// This entire class is acting as a Data Transder Object, used as an intermediate to contain new user details, but not yet saved
+
 public class SecurityUserDetails implements UserDetails{
 
     private final User user;
@@ -22,7 +24,7 @@ public class SecurityUserDetails implements UserDetails{
         return user.getName();
     }
 
-    // Splits up multiple roles if listed. I.e, memeber has ROLE_GUEST and ROLE_MEMBER
+    // Splits up multiple roles if listed. I.e, member has ROLE_GUEST and ROLE_MEMBER
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user
@@ -61,6 +63,6 @@ public class SecurityUserDetails implements UserDetails{
     @Override
     public boolean isEnabled() {
         return true;
-    }
+    }    
     
 }

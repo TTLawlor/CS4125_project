@@ -2,8 +2,6 @@ package com.group_22235.booking;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -40,9 +38,9 @@ public class TicketFacade extends ABaseEntity{
 
     @Column
     private String ticketType; 
-
+    
     @Column
-    private String date;
+    private LocalDate date; 
     
     @Column
     private LocalTime depTime;
@@ -51,13 +49,10 @@ public class TicketFacade extends ABaseEntity{
     private LocalTime arrTime;
 
     @Column
+    protected double price, timeLimit;
+
+    @Transient
     protected double typePrice;
-
-    @Column
-    protected double price;
-
-    @Column
-    protected double timeLimit;
 
     public TicketFacade(Station depStation, Station arrStation, LocalTime depTime, LocalTime arrTime, LocalDate date,
     String ticketType){
@@ -68,10 +63,17 @@ public class TicketFacade extends ABaseEntity{
         this.depTime = depTime;
         this.arrTime = arrTime;
 
-        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        this.date = date;
         
         setTicketType(ticketType);
 
+        adult = new Adult();
+        child = new Child();
+        oap = new OAP();
+        youngAdult = new YoungAdult();
+    }
+
+    public TicketFacade() {
         adult = new Adult();
         child = new Child();
         oap = new OAP();
@@ -148,12 +150,12 @@ public class TicketFacade extends ABaseEntity{
         this.arrTime = arrTime;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
-        this.date = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        this.date = date;
     }
 
     public String getTicketType() {

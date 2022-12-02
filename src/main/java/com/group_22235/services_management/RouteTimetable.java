@@ -92,6 +92,15 @@ public class RouteTimetable extends ABaseEntity {
         return false;
     }
 
+    public LocalTime getStationTime(Station station){
+        for (Map.Entry<Station, LocalTime> entry : timetable.entrySet()) {
+            if (entry.getKey() == station)  {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         String result = "RouteTimetable: \n";

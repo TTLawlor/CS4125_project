@@ -17,12 +17,15 @@ public class SecurityUserDetailsService implements UserDetailsService{
     @Autowired
     UserRepository userRepository;
 
+    // Looks up the user using JPA
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByEmail(email);    // Try to find the email in the db using userRepo
-        user.orElseThrow(() -> new UsernameNotFoundException("Email not found: " + email));     // If not found, throw error
-         // If found, maps the user details to type SecurityUserDetails. Can't just throw back type User, since requires UserDetails 
-         // type return, so we convert it
-        return user.map(SecurityUserDetails::new).get(); 
-    }    
+        if(user == null){
+            throw new UsernameNotFoundException("Email not found: " + email);
+        }
+        // If found, maps the user details to type SecurityUserDetails. Can't just throw back type User, since requires UserDetails 
+        // type return, so we convert it
+        return user.map(SecurityUserDetails::new).get();
+    } 
 }
